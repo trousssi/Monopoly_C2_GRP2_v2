@@ -16,6 +16,7 @@ public class Monopoly {
      */
     public static void main(String[] args) {
         System.out.print("Simon");
+        System.out.print("Simon");
     }
     
 }
