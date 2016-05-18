@@ -1,40 +1,45 @@
+package Jeu;
+
 import java.util.ArrayList;
 
 public class Joueur {
-	private String3 _nomJoueur;
-	private int _cash = 1500;
-	public ArrayList<Gare> _gares = new ArrayList<Gare>();
-	private Carreau _positionCourante;
+	private String nomJoueur;
+	private int cash = 1500;
+	public ArrayList<Gare> gares = new ArrayList<Gare>();
+	private Carreau positionCourante;
 
 	public void payerLoyer(int aL) {
-		throw new UnsupportedOperationException();
+		this.cash=cash-aL;
 	}
 
 	public void recevoirLoyer(int aL) {
-		throw new UnsupportedOperationException();
+		this.cash=cash+aL;
 	}
 
 	public Carreau getPositionCourante() {
-		return this._positionCourante;
+		return this.positionCourante;
 	}
 
 	public Carreau Avancer() {
-		throw new UnsupportedOperationException();
+		//this.positionCourante
+                return null;
 	}
 
 	public void setPositionCourante(Carreau aCarreau) {
-		throw new UnsupportedOperationException();
+		this.positionCourante = aCarreau;
 	}
 
 	public boolean peuxPayer(int aPrix) {
-		throw new UnsupportedOperationException();
+		return (cash >= aPrix);
 	}
 
 	public String getNom() {
-		throw new UnsupportedOperationException();
+		return this.nomJoueur;
 	}
 
 	public int getNbGare() {
-		throw new UnsupportedOperationException();
+            if (gares != null) 
+		return gares.size();
+            else return 0;
 	}
 }
