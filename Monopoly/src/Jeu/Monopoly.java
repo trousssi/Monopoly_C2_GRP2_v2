@@ -5,9 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Monopoly {
-	private Carreau _carreaux;
+	private HashMap<String, Carreau> carreaux = new HashMap<>();
 	private ArrayList<Joueur> _joueurs = new ArrayList<Joueur>();
         
         public void CreerPlateau(String dataFilename) {
@@ -38,6 +39,8 @@ public class Monopoly {
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                                        Carreau car = new Carreau (data.get(i)[1], data.get(i)[2]);
+                                        carreaux.put(data.get(i)[1], car);
 				}
 				else if(caseType.compareTo("G") == 0){
 					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
