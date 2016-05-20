@@ -21,7 +21,7 @@ public class Joueur {
 	}
 
 	public Carreau Avancer() {
-		//this.positionCourante.setNumero(this.positionCourante.getNumero+1);
+		//this.positionCourante.setNumero(this.positionCourante.getNumero+1); 
                 return null;
 	}
 
