@@ -1,8 +1,8 @@
 package Jeu;
 
 public class Gare extends Carreau {
-	private int _prix;
-	private Joueur _proprietaire;
+	private int prix;
+	private Joueur proprietaire;
 
 	public void action(Joueur aJ) {
 		throw new UnsupportedOperationException();
@@ -13,7 +13,7 @@ public class Gare extends Carreau {
 	}
 
 	private Joueur getProprietaire() {
-		return this._proprietaire;
+		return this.proprietaire;
 	}
 
 	private void acheterPropriete(Joueur aJ) {
@@ -31,6 +31,6 @@ public class Gare extends Carreau {
 	 * Renvoie le prix de la gare
 	 */
 	public int getPrix() {
-		return this._prix;
+		return this.prix;
 	}
 }
