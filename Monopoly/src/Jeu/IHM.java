@@ -1,3 +1,5 @@
+package Jeu;
+
 import Diagramme_de_packages3.Controleur;
 
 public class IHM {

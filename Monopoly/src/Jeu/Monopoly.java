@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Monopoly {
 	private HashMap<String, Carreau> carreaux = new HashMap<>();
-	private ArrayList<Joueur> _joueurs = new ArrayList<Joueur>();
+	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
         
         public void CreerPlateau(String dataFilename) {
 		buildGamePlateau(dataFilename);

@@ -1,3 +1,5 @@
+package Jeu;
+
 public class Gare extends Carreau {
 	private int _prix;
 	private Joueur _proprietaire;

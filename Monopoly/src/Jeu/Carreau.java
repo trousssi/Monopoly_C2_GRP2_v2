@@ -1,3 +1,5 @@
+package Jeu;
+
 public abstract class Carreau {
 	private int _numero;
 	private String _nomCarreau;
