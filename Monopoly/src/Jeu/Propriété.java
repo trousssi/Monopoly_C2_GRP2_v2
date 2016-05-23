@@ -13,9 +13,10 @@ public abstract class Propriété extends Carreau {
 
 	public void action(Joueur aJ) {
             Joueur jProprio;
+            int l; //loyer
             jProprio = getProprietaire();
             if (jProprio!=null) { //Il y a un propriétaire
-                if (j!=jProprio) { //S'il n'est pas propriétaire
+                if (aJ!=jProprio) { //S'il n'est pas propriétaire
                     l = calculLoyer();
                 }
             } else { //Pas de propriétaire
