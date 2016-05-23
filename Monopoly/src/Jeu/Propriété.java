@@ -5,6 +5,12 @@ public abstract class Propriété extends Carreau {
 	private int loyer;
 	public Joueur proprietaire;
 
+    public Propriété(int prix, int loyer) {
+        this.prix = prix;
+        this.loyer = loyer;
+        
+    }
+
 	public void action(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
