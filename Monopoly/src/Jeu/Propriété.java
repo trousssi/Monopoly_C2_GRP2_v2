@@ -12,7 +12,15 @@ public abstract class Propriété extends Carreau {
     }
 
 	public void action(Joueur aJ) {
-		throw new UnsupportedOperationException();
+            Joueur jProprio;
+            jProprio = getProprietaire();
+            if (jProprio!=null) { //Il y a un propriétaire
+                if (j!=jProprio) { //S'il n'est pas propriétaire
+                    l = calculLoyer();
+                }
+            } else { //Pas de propriétaire
+                res = acheterPropriete(j);
+            }
 	}
 
 	protected abstract int calculLoyer();
