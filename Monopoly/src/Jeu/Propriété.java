@@ -20,7 +20,7 @@ public abstract class Propriété extends Carreau {
                     l = calculLoyer();
                 }
             } else { //Pas de propriétaire
-                res = acheterPropriete(j);
+                res = acheterPropriete(j);//
             }
 	}
 
