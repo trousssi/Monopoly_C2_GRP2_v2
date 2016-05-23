@@ -27,7 +27,9 @@ public class Monopoly {
 		throw new UnsupportedOperationException();
 	}
         
-        
+        public void addJoueur (Joueur joueur) {
+            joueurs.add(joueur);
+        }
 	
 	private void buildGamePlateau(String dataFilename)
 	{
@@ -40,18 +42,28 @@ public class Monopoly {
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                                         ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, null);
-				}
+                                        carreaux.put(data.get(i)[2], prop);
+
+                                }
 				else if(caseType.compareTo("G") == 0){
 					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				}
+                                        Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
+                                        carreaux.put(data.get(i)[2], gare);
+                                }
 				else if(caseType.compareTo("C") == 0){
 					System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				}
+                                        Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
+                                        carreaux.put(data.get(i)[2], compagnie);
+                                }
 				else if(caseType.compareTo("AU") == 0){
 					System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				}
-				else
-					System.err.println("[buildGamePleateau()] : Invalid Data type");
+                                        AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
+                                        carreaux.put(data.get(i)[2], autreCarr);
+                                }
+                                else {
+                                        System.err.println("[buildGamePleateau()] : Invalid Data type");
+                                }
+                                
 			}
 			
 		} 

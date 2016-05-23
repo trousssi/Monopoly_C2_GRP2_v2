@@ -1,15 +1,17 @@
 package Jeu;
 
-public abstract class Propriété extends Carreau {
+public abstract class Propriete extends Carreau {
 	private int prix;
 	private int loyer;
 	public Joueur proprietaire;
 
-    public Propriété(int prix, int loyer) {
-        this.prix = prix;
-        this.loyer = loyer;
-        
-    }
+        public Propriete(int numero, String nomCarreau, int prix, int loyer, Joueur proprietaire) {
+            super(numero, nomCarreau);
+            this.prix = prix;
+            this.loyer = loyer;
+            this.proprietaire = proprietaire;
+        }
+
 
 	public void action(Joueur aJ) {
             Joueur jProprio;

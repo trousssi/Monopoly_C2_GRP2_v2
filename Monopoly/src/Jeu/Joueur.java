@@ -10,6 +10,11 @@ public class Joueur {
         public ArrayList<Compagnie> compagnies = new ArrayList<Compagnie>();
         public ArrayList<ProprieteAConstruire> proprietesAconstruire = new ArrayList<ProprieteAConstruire>();
 
+        public Joueur(String nomJoueur, Carreau positionCourante) {
+            this.nomJoueur = nomJoueur;
+            this.positionCourante = positionCourante;
+        }
+
         
 	public void payerLoyer(int aL) {
             cash-=aL;
