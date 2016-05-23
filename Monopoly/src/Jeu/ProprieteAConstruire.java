@@ -3,8 +3,8 @@ package Jeu;
 public class ProprieteAConstruire extends Propriété {
 	private Groupe groupe;
 
-    public ProprieteAConstruire(Groupe groupe, int prix, int loyer, Joueur proprietaire) {
-        super(prix, loyer, proprietaire);
+    public ProprieteAConstruire(Groupe groupe, int prix, int loyer) {
+        super(prix, loyer);
         this.groupe = groupe;
     }
 
