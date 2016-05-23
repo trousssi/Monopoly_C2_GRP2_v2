@@ -12,7 +12,9 @@ public class Controleur {
         public static final Random RANDOM = new Random();
         
 	public void jouerUnCoup(Joueur aJ) {
-		throw new UnsupportedOperationException();
+		Carreau c;
+                c = lancerDésAvancer(aJ);
+                
 	}
         
         public static int sommeDes() {
