@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class Joueur {
 	private String nomJoueur;
 	private int cash = 1500;
+        private Carreau positionCourante;
 	public ArrayList<Gare> gares = new ArrayList<Gare>();
+        public ArrayList<Compagnie> coupagnies = new ArrayList<Compagnie>();
+        public ArrayList<ProprieteAConstruire> proprietesAconstruire = new ArrayList<ProprieteAConstruire>();
 
+        
 	public void payerLoyer(int aL) {
 		throw new UnsupportedOperationException();
 	}
@@ -16,7 +20,7 @@ public class Joueur {
 	}
 
 	public Carreau getPositionCourante() {
-		throw new UnsupportedOperationException();
+		return this.positionCourante;
 	}
 
 	public Carreau Avancer(int aSommeDes) {
