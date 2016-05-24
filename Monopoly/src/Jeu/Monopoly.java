@@ -16,7 +16,13 @@ public class Monopoly {
 	}
 
 	public Carreau AvancerJoueur(Joueur aJoueur, int aSommeDes) {
-		throw new UnsupportedOperationException();
+		Carreau carreau = aJoueur.getPositionCourante();
+                
+                int numCarreau = carreau.getNumero();
+                
+                aJoueur.setPositionCourante(aSommeDes + numCarreau);
+                
+                return aJoueur.getPositionCourante();
 	}
 
 	public void afficherEtatJoueurs() {
