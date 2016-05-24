@@ -10,6 +10,10 @@ import java.util.HashMap;
 public class Monopoly {
 	private HashMap<String, Carreau> carreaux = new HashMap<>();
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+
+        public ArrayList<Joueur> getJoueurs() {
+            return joueurs;
+        }
         
         public void CreerPlateau(String dataFilename) {
 		buildGamePlateau(dataFilename);
