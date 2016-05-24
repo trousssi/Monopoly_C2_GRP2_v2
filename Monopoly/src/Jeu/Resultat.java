@@ -13,22 +13,42 @@ import java.util.HashMap;
  * @author trousssi
  */
 public class Resultat {
-//Attributs
+//Attributs et Constructeurs
     //Propriété
     private int prixPropriete;
     private int loyerPropriete;
     public Joueur proprietairePropriete;
+    public Resultat(int prixPropriete, int loyerPropriete, Joueur proprietairePropriete) {
+        this.setPrixPropriete(prixPropriete);
+        this.setLoyerPropriete(loyerPropriete);
+        this.setProprietairePropriete(proprietairePropriete);
+    }
+    
     //Carreau
     private int numeroCarreau;
     private String nomCarreau;
+    public Resultat(int numeroCarreau, String nomCarreau) {
+        this.setNumeroCarreau(numeroCarreau);
+        this.setNomCarreau(nomCarreau);
+    }
+    
     //Monopoly
     private HashMap<String, Carreau> carreauxMonopoly = new HashMap<>();
     private ArrayList<Joueur> joueursMonopoly = new ArrayList<Joueur>();
+    
     //ProprieteAConstruire
     private Groupe groupePropriete;
+    public Resultat(Groupe groupePropriete) {
+        this.setGroupePropriete(groupePropriete);
+    }
+    
     //Groupe
     private CouleurPropriete couleurGroupe;
     public ArrayList<ProprieteAConstruire> proprietesGroupe = new ArrayList<ProprieteAConstruire>();
+    public Resultat(CouleurPropriete couleurGroupe) {
+        this.setCouleurGroupe(couleurGroupe);
+    }
+    
     //Joueur
     private String nomJoueur;
     private int cashJoueur;
@@ -36,36 +56,104 @@ public class Resultat {
     public ArrayList<Gare> garesJoueur = new ArrayList<Gare>();
     public ArrayList<Compagnie> compagniesJoueur = new ArrayList<Compagnie>();
     public ArrayList<ProprieteAConstruire> proprietesAconstruireJoueur = new ArrayList<ProprieteAConstruire>();
-//Constructeurs
-    //Vide
-    public Resultat() {
-        this.prixPropriete = 0;
-        this.loyerPropriete = 0;
-        this.proprietairePropriete = new Joueur(nomJoueur, positionCouranteJoueur);
-        this.numeroCarreau = 0;
-        this.nomCarreau = "CARREAU";
-        this.nomJoueur = "JOUEUR";
-        this.cashJoueur = 0;
-        this.positionCouranteJoueur = new AutreCarreau(numeroCarreau, nomCarreau);
+    public Resultat(String nomJoueur, int cashJoueur, Carreau positionCouranteJoueur) {
+        this.setNomJoueur(nomJoueur);
+        this.setCashJoueur(cashJoueur);
+        this.setPositionCouranteJoueur(positionCouranteJoueur);
     }
-    //Tout
+    
+    //Constructeur Vide
+    public Resultat() {
+        this.setPrixPropriete(0);
+        this.setLoyerPropriete(0);
+        this.setNumeroCarreau(0);
+        this.setNomCarreau("CARREAU");
+        this.setNomJoueur("JOUEUR");
+        this.setCashJoueur(0);
+        this.setProprietairePropriete(new Joueur(nomJoueur, positionCouranteJoueur));
+        this.setPositionCouranteJoueur(new AutreCarreau(numeroCarreau, nomCarreau));
+    }
+    
+    //Tout construire
     public Resultat(int prixPropriete, int loyerPropriete, Joueur proprietairePropriete, int numeroCarreau, String nomCarreau, Groupe groupePropriete, CouleurPropriete couleurGroupe, String nomJoueur, int cashJoueur, Carreau positionCouranteJoueur) {
-        this.prixPropriete = prixPropriete;
-        this.loyerPropriete = loyerPropriete;
-        this.proprietairePropriete = proprietairePropriete;
-        this.numeroCarreau = numeroCarreau;
-        this.nomCarreau = nomCarreau;
-        this.groupePropriete = groupePropriete;
-        this.couleurGroupe = couleurGroupe;
-        this.nomJoueur = nomJoueur;
-        this.cashJoueur = cashJoueur;
-        this.positionCouranteJoueur = positionCouranteJoueur;
+        this.setPrixPropriete(prixPropriete);
+        this.setLoyerPropriete(loyerPropriete);
+        this.setProprietairePropriete(proprietairePropriete);
+        this.setNumeroCarreau(numeroCarreau);
+        this.setNomCarreau(nomCarreau);
+        this.setGroupePropriete(groupePropriete);
+        this.setCouleurGroupe(couleurGroupe);
+        this.setNomJoueur(nomJoueur);
+        this.setCashJoueur(cashJoueur);
+        this.setPositionCouranteJoueur(positionCouranteJoueur);
     }
 //Getters
     
 //Setters
-    
-//Autres Méthodes
+    public void setPrixPropriete(int prixPropriete) {
+        this.prixPropriete = prixPropriete;
+    }
 
+    public void setLoyerPropriete(int loyerPropriete) {
+        this.loyerPropriete = loyerPropriete;
+    }
+
+    public void setProprietairePropriete(Joueur proprietairePropriete) {
+        this.proprietairePropriete = proprietairePropriete;
+    }
+
+    public void setNumeroCarreau(int numeroCarreau) {
+        this.numeroCarreau = numeroCarreau;
+    }
+
+    public void setNomCarreau(String nomCarreau) {
+        this.nomCarreau = nomCarreau;
+    }
+
+    public void setCarreauxMonopoly(HashMap<String, Carreau> carreauxMonopoly) {
+        this.carreauxMonopoly = carreauxMonopoly;
+    }
+
+    public void setJoueursMonopoly(ArrayList<Joueur> joueursMonopoly) {
+        this.joueursMonopoly = joueursMonopoly;
+    }
+
+    public void setGroupePropriete(Groupe groupePropriete) {
+        this.groupePropriete = groupePropriete;
+    }
+
+    public void setCouleurGroupe(CouleurPropriete couleurGroupe) {
+        this.couleurGroupe = couleurGroupe;
+    }
+
+    public void setProprietesGroupe(ArrayList<ProprieteAConstruire> proprietesGroupe) {
+        this.proprietesGroupe = proprietesGroupe;
+    }
+
+    public void setNomJoueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
+
+    public void setCashJoueur(int cashJoueur) {
+        this.cashJoueur = cashJoueur;
+    }
+
+    public void setPositionCouranteJoueur(Carreau positionCouranteJoueur) {
+        this.positionCouranteJoueur = positionCouranteJoueur;
+    }
+
+    public void setGaresJoueur(ArrayList<Gare> garesJoueur) {
+        this.garesJoueur = garesJoueur;
+    }
+
+    public void setCompagniesJoueur(ArrayList<Compagnie> compagniesJoueur) {
+        this.compagniesJoueur = compagniesJoueur;
+    }
+
+    public void setProprietesAconstruireJoueur(ArrayList<ProprieteAConstruire> proprietesAconstruireJoueur) {
+        this.proprietesAconstruireJoueur = proprietesAconstruireJoueur;
+    }
+
+    //Autres Méthodes
     
 }
