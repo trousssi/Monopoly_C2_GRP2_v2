@@ -49,8 +49,14 @@ public class Controleur {
             
             
             do {
-                int i = 1;
-                monopoly.getJoueurs().get(i);
+                int i = 0;
+                Joueur j = monopoly.getJoueurs().get(i);
+                
+                if (ihm.infoJoueur(j)) {
+                    this.lancerDésAvancer(j);
+                }
+                
+                
                 
                 i++;
             } while (monopoly.getJoueurs().size() > 1);
