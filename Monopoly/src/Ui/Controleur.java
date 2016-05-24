@@ -15,7 +15,7 @@ public class Controleur {
 	public void jouerUnCoup(Joueur joueur) {
 		Carreau car;
                 car = lancerDésAvancer(joueur);
-                
+                car.action(joueur);
 	}
         
         public void initPartie () {
