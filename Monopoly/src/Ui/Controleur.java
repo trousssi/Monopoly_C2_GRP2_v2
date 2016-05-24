@@ -12,9 +12,9 @@ public class Controleur {
         
         public static final Random RANDOM = new Random();
         
-	public void jouerUnCoup(Joueur aJ) {
-		Carreau c;
-                c = lancerDésAvancer(aJ);
+	public void jouerUnCoup(Joueur joueur) {
+		Carreau car;
+                car = lancerDésAvancer(joueur);
                 
 	}
         
