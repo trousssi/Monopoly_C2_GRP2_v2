@@ -10,5 +10,17 @@ package Jeu;
  * @author trousssi
  */
 public class Resultat {
+//Attributs
+    //Propriété
+    private int prixPropriete;
+    private int loyerPropriete;
+    public Joueur proprietairePropriete;
+    //Alléluia
+//Constructeurs
     
+//Getters
+    
+//Setters
+    
+//Autres Méthodes
 }
