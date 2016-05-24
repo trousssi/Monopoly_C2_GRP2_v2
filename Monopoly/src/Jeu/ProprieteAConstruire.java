@@ -8,8 +8,6 @@ public class ProprieteAConstruire extends Propriete {
             this.groupe = groupe;
         }
 
-
-
         
 	public Groupe getGroupe() {
 		return this.groupe;

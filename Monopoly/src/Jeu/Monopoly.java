@@ -9,7 +9,12 @@ import java.util.HashMap;
 
 public class Monopoly {
 	private HashMap<Integer, Carreau> carreaux = new HashMap<>();
+	private HashMap<String, Groupe> groupes = new HashMap<>();
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+
+        public ArrayList<Joueur> getJoueurs() {
+            return joueurs;
+        }
         
         public void CreerPlateau(String dataFilename) {
 		buildGamePlateau(dataFilename);
@@ -42,6 +47,23 @@ public class Monopoly {
 	
 	private void buildGamePlateau(String dataFilename)
 	{
+            Groupe bleuFonce = new Groupe(CouleurPropriete.bleuFonce);
+            groupes.put(CouleurPropriete.bleuFonce.toString(), bleuFonce);
+            Groupe orange = new Groupe(CouleurPropriete.orange);
+            groupes.put(CouleurPropriete.orange.toString(), orange);
+            Groupe mauve = new Groupe(CouleurPropriete.mauve);
+            groupes.put(CouleurPropriete.mauve.toString(), mauve);
+            Groupe violet = new Groupe(CouleurPropriete.violet);
+            groupes.put(CouleurPropriete.violet.toString(), violet);
+            Groupe bleuCiel = new Groupe(CouleurPropriete.bleuCiel);
+            groupes.put(CouleurPropriete.bleuCiel.toString(), bleuCiel);
+            Groupe jaune = new Groupe(CouleurPropriete.jaune);
+            groupes.put(CouleurPropriete.jaune.toString(), jaune);
+            Groupe vert = new Groupe(CouleurPropriete.vert);
+            groupes.put(CouleurPropriete.vert.toString(), vert);
+            Groupe rouge = new Groupe(CouleurPropriete.rouge);
+            groupes.put(CouleurPropriete.rouge.toString(), rouge);
+            
 		try{
 			ArrayList<String[]> data = readDataFile(dataFilename, ",");
 			
@@ -50,8 +72,9 @@ public class Monopoly {
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                                        ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, null);
+                                        ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, groupes.get(data.get(i)[3]));
                                         carreaux.put(Integer.parseInt(data.get(i)[1]), prop);
+                                        groupes.get(data.get(i)[3]).addPropriete(prop);
 
                                 }
 				else if(caseType.compareTo("G") == 0){
