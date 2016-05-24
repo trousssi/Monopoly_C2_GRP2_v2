@@ -1,11 +1,20 @@
 package Jeu;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Groupe {
 	private CouleurPropriete couleur;
-	public ArrayList<ProprieteAConstruire> proprietes = new ArrayList<ProprieteAConstruire>();
+	public HashSet<ProprieteAConstruire> proprietes = new HashSet<ProprieteAConstruire>();
 
+        public Groupe(CouleurPropriete couleur) {
+            this.couleur = couleur;
+        }
+
+        public void addPropriete(ProprieteAConstruire propriete) {
+            proprietes.add(propriete);
+        }
+
+        
 	public int GetNbPropriété() {
 		throw new UnsupportedOperationException();
 	}
