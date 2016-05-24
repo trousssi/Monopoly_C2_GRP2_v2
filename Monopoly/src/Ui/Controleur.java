@@ -24,12 +24,13 @@ public class Controleur {
             int i = Integer.parseInt(sc.nextLine());
             if (i > 0 && i < 7) {
                 for (int n = 1; n <= i; n ++) {
-                    System.out.println("Entrer le joueur " + n);
+                    System.out.println("Entrer le nom du joueur n°" + n + " : ");
                     String nom = sc.nextLine();
                     Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
                     monopoly.addJoueur(joueur);
                 }
             }
+            this.lancePartie();
         }
         
         public static int sommeDes() {
@@ -43,4 +44,15 @@ public class Controleur {
             
             return carreau;
 	}
+        
+        private void lancePartie() {
+            
+            
+            do {
+                int i = 1;
+                monopoly.getJoueurs().get(i);
+                
+                i++;
+            } while (monopoly.getJoueurs().size() > 1);
+        }
 }
