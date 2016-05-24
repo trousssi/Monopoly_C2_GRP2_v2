@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Monopoly {
-	private HashMap<String, Carreau> carreaux = new HashMap<>();
+	private HashMap<Integer, Carreau> carreaux = new HashMap<>();
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
         public ArrayList<Joueur> getJoueurs() {
@@ -19,22 +19,25 @@ public class Monopoly {
 		buildGamePlateau(dataFilename);
 	}
 
-	public Carreau AvancerJoueur(Joueur aJoueur, int aSommeDes) {
-		Carreau carreau = aJoueur.getPositionCourante();
-                
-                int numCarreau = carreau.getNumero();
-                
-                aJoueur.setPositionCourante(aSommeDes + numCarreau);
-                
-                return aJoueur.getPositionCourante();
+	public Carreau AvancerJoueur(Joueur joueur, int sommeDes) {
+		Carreau carreau = joueur.getPositionCourante();
+                int numCar = carreau.getNumero();
+                carreau = this.getCarreau(numCar+sommeDes);
+                joueur.setPositionCourante(carreau);
+                return carreau;
 	}
 
 	public void afficherEtatJoueurs() {
 		throw new UnsupportedOperationException();
 	}
 
-	public Carreau getCarreau(int aNumCarreau) {
-		throw new UnsupportedOperationException();
+	public Carreau getCarreau(int numCarreau) {
+		numCarreau = numCarreau % 40;
+                if (numCarreau == 0) {
+                    numCarreau = 40;
+                }
+                Carreau car = this.carreaux.get(numCarreau);
+                return car;
 	}
         
         public void addJoueur (Joueur joueur) {
@@ -52,23 +55,23 @@ public class Monopoly {
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                                         ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, null);
-                                        carreaux.put(data.get(i)[2], prop);
+                                        carreaux.put(Integer.parseInt(data.get(i)[1]), prop);
 
                                 }
 				else if(caseType.compareTo("G") == 0){
 					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                                         Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
-                                        carreaux.put(data.get(i)[2], gare);
+                                        carreaux.put(Integer.parseInt(data.get(i)[1]), gare);
                                 }
 				else if(caseType.compareTo("C") == 0){
 					System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                                         Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
-                                        carreaux.put(data.get(i)[2], compagnie);
+                                        carreaux.put(Integer.parseInt(data.get(i)[1]), compagnie);
                                 }
 				else if(caseType.compareTo("AU") == 0){
 					System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                                         AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
-                                        carreaux.put(data.get(i)[2], autreCarr);
+                                        carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
                                 }
                                 else {
                                         System.err.println("[buildGamePleateau()] : Invalid Data type");

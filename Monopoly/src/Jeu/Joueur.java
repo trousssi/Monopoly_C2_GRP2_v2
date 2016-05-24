@@ -32,8 +32,8 @@ public class Joueur {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setPositionCourante(int aNum) {
-		throw new UnsupportedOperationException();
+	public void setPositionCourante(Carreau carreau) {
+		
 	}
 
 	public boolean peuxPayer(int aPrix) {

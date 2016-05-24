@@ -6,9 +6,9 @@ import Jeu.Carreau;
 public class IHM {
 	public Controleur controleur;
 
-	public void messageJoueurAvance(Joueur aJoueur, int aSommeDes, Carreau aCarreau) {
-            System.out.println("[Joueur = "+aJoueur.getNom()+"] \nLa somme de dés vaut : " + aSommeDes);
-            System.out.println("Carreau courant : " + aCarreau.getNomCarreau());
+	public void messageJoueurAvance(Joueur joueur, int sommeDes, Carreau carreau) {
+            System.out.println("[Joueur = "+joueur.getNom()+"] \nLa somme de dés vaut : " + sommeDes);
+            System.out.println("Carreau courant : " + carreau.getNomCarreau());
 	}
         
 }
