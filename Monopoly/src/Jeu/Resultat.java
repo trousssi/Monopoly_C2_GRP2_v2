@@ -15,7 +15,7 @@ public class Resultat {
     private int prixPropriete;
     private int loyerPropriete;
     public Joueur proprietairePropriete;
-    //
+    //Alléluia
 //Constructeurs
     
 //Getters
