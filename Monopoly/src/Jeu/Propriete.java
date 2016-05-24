@@ -17,24 +17,25 @@ public abstract class Propriete extends Carreau {
 	public Resultat action(Joueur j) {
             Resultat res = new Resultat();
             Joueur jProprio;
-            int l; //loyer
+            //int l; //loyer --> voir résultat
             jProprio = getProprietaire();
             if (jProprio!=null) { //Il y a un propriétaire
                 if (j!=jProprio) { //S'il n'est pas propriétaire
-                    l = calculLoyer();
+                    return calculLoyer();
                 }
+                else {return null;} //Le joueur courant est propriétaire : rien à faire
             } else { //Pas de propriétaire
-                res = acheterPropriete(j);//
+                return acheterPropriete(j);
             }
 	}
 
-	protected abstract int calculLoyer();
+	protected abstract Resultat calculLoyer();
 
 	protected Joueur getProprietaire() {
 		return this.proprietaire;
 	}
 
-	protected void acheterPropriete(Joueur aJ) {
+	protected Resultat acheterPropriete(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -45,4 +46,18 @@ public abstract class Propriete extends Carreau {
 	public int getLoyer() {
 		return this.loyer;
 	}
+        
+        //Setters
+        public void setPrix(int prix) {
+            this.prix = prix;
+        }
+
+        public void setLoyer(int loyer) {
+            this.loyer = loyer;
+        }
+
+        public void setProprietaire(Joueur proprietaire) {
+            this.proprietaire = proprietaire;
+        }
+        
 }

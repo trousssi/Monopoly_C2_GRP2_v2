@@ -24,6 +24,7 @@ public class Resultat {
         this.setProprietairePropriete(proprietairePropriete);
     }
     
+    
     //Carreau
     private int numeroCarreau;
     private String nomCarreau;
@@ -88,6 +89,70 @@ public class Resultat {
         this.setPositionCouranteJoueur(positionCouranteJoueur);
     }
 //Getters
+
+    public int getPrixPropriete() {
+        return prixPropriete;
+    }
+
+    public int getLoyerPropriete() {
+        return loyerPropriete;
+    }
+
+    public Joueur getProprietairePropriete() {
+        return proprietairePropriete;
+    }
+
+    public int getNumeroCarreau() {
+        return numeroCarreau;
+    }
+
+    public String getNomCarreau() {
+        return nomCarreau;
+    }
+
+    public HashMap<String, Carreau> getCarreauxMonopoly() {
+        return carreauxMonopoly;
+    }
+
+    public ArrayList<Joueur> getJoueursMonopoly() {
+        return joueursMonopoly;
+    }
+
+    public Groupe getGroupePropriete() {
+        return groupePropriete;
+    }
+
+    public CouleurPropriete getCouleurGroupe() {
+        return couleurGroupe;
+    }
+
+    public ArrayList<ProprieteAConstruire> getProprietesGroupe() {
+        return proprietesGroupe;
+    }
+
+    public String getNomJoueur() {
+        return nomJoueur;
+    }
+
+    public int getCashJoueur() {
+        return cashJoueur;
+    }
+
+    public Carreau getPositionCouranteJoueur() {
+        return positionCouranteJoueur;
+    }
+
+    public ArrayList<Gare> getGaresJoueur() {
+        return garesJoueur;
+    }
+
+    public ArrayList<Compagnie> getCompagniesJoueur() {
+        return compagniesJoueur;
+    }
+
+    public ArrayList<ProprieteAConstruire> getProprietesAconstruireJoueur() {
+        return proprietesAconstruireJoueur;
+    }
     
 //Setters
     public void setPrixPropriete(int prixPropriete) {

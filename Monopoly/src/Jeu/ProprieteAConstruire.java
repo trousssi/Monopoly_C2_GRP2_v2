@@ -13,7 +13,7 @@ public class ProprieteAConstruire extends Propriete {
 		return this.groupe;
 	}
 
-	protected int calculLoyer() {
+	protected Resultat calculLoyer() {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -33,32 +33,42 @@ public class Controleur {
             this.lancePartie();
         }
         
-        public static int sommeDes() {
-            return RANDOM.nextInt(6)+1;
+        public static int lancerDes() {
+            return RANDOM.nextInt(3)+1;
         }
         
 	private Carreau lancerDésAvancer(Joueur aJ) {
-            int sommeDes = this.sommeDes();
+            int resDes1 = lancerDes();
+            int resDes2 = lancerDes();
+            int sommeDes = resDes1+resDes2;
+            if (resDes1 == resDes2) {       //Gérer le cas des doubles
+                Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
+                ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
+                carreau.action(aJ);
+            }
+            
             Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
             ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
+            Jeu.Resultat res = carreau.action(aJ);
+            ihm.action(res);
             
             return carreau;
 	}
         
         private void lancePartie() {
-            
-            
+            boolean continuer = true;
+            int i = 0;
+                       
             do {
-                int i = 0;
                 Joueur j = monopoly.getJoueurs().get(i);
-                
-                if (ihm.infoJoueur(j)) {
+                                
+                if (ihm.infoJoueur(j)) {        //renvoie true si le joueur veut jouer;
                     this.lancerDésAvancer(j);
+                    i++;
                 }
-                
-                
-                
-                i++;
-            } while (monopoly.getJoueurs().size() > 1);
+                else if (ihm.quitter()) {
+                     continuer = false;
+                }
+            } while (monopoly.getJoueurs().size() > 1 && continuer);//Les joueurs hors-jeu doivent être supprimés de la liste.
         }
 }

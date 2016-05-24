@@ -32,27 +32,43 @@ public class Joueur {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setPositionCourante(Carreau carreau) {
-		
-	}
-
 	public boolean peuxPayer(int aPrix) {
-		throw new UnsupportedOperationException();
+            return this.getCash()>=aPrix;
 	}
 
 	public String getNom() {
-		throw new UnsupportedOperationException();
+            return this.getNom();
 	}
 
 	public int getNbGare() {
-		throw new UnsupportedOperationException();
+            return this.getGares().size();
 	}
+        
+        public void addGare(Gare gare) {
+            if (gare.getProprietaire() == null) {
+                this.getGares().add(gare);
+                gare.setProprietaire(this);
+            }
+        }
 
-	public int getNbCompanie() {
-		throw new UnsupportedOperationException();
+	public int getNbCompagnie() {
+		return this.getCompagnies().size();
 	}
 
 	public int getNbPropriete(Groupe aGroupe) {
 		throw new UnsupportedOperationException();
 	}
+
+        public int getCash() {
+            return cash;
+        }
+
+        public ArrayList<Gare> getGares() {
+            return gares;
+        }
+
+        public ArrayList<Compagnie> getCompagnies() {
+            return compagnies;
+        }
+        
 }
