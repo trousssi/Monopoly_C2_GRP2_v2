@@ -50,7 +50,7 @@ public class Controleur {
             Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
             ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
             Jeu.Resultat res = carreau.action(aJ);
-            ihm.action(res);
+            ihm.action(res, aJ);
             
             return carreau;
 	}
