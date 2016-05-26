@@ -7,7 +7,7 @@ public class AutreCarreau extends Carreau {
     }
     
     @Override
-    public Resultat action(Joueur aj) {
+    public Resultat action(Joueur aj,int sommeDe) {
         Resultat res = new Resultat(this.getNumero(), this.getNomCarreau());
         return res;
     }

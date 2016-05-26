@@ -15,7 +15,7 @@ public class Controleur {
 	public void jouerUnCoup(Joueur joueur) {
 		Carreau car;
                 car = lancerDésAvancer(joueur);
-                car.action(joueur);
+               
 	}
         
         public void initPartie () {
@@ -44,12 +44,13 @@ public class Controleur {
             if (resDes1 == resDes2) {       //Gérer le cas des doubles
                 Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
                 ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
-                carreau.action(aJ);
+                Jeu.Resultat res = carreau.action(aJ,sommeDes);
+                ihm.action(res, aJ);
             }
             
             Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
             ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
-            Jeu.Resultat res = carreau.action(aJ);
+            Jeu.Resultat res = carreau.action(aJ,sommeDes);
             ihm.action(res, aJ);
             
             return carreau;

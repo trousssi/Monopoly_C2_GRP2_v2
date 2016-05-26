@@ -9,7 +9,8 @@ public class Gare extends Propriete {
         }
 
 
-	protected Resultat calculLoyer() {//Modifier l'attribut loyer de la gare ?
+        @Override
+	protected Resultat calculLoyer(int sommeDe) {//Modifier l'attribut loyer de la gare ?
             int nbGare = this.getProprietaire().getNbGare();
             
             int loyerAPayer = this.getLoyer()*(nbGare);
