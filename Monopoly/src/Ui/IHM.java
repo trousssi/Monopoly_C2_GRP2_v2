@@ -2,6 +2,7 @@ package Ui;
 
 import Jeu.Joueur;
 import Jeu.Carreau;
+import Jeu.Resultat;
 import java.util.Scanner;
 
 public class IHM {
@@ -38,28 +39,30 @@ public class IHM {
             else { return false; }
         }
         
-        public void action(Jeu.Resultat res) {
-            //Propriete
-            if (res.getProprietairePropriete() != null) {
-                System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer géré par controlleur
-                this.payeLoyer(res);
+        public void action(Resultat res, Joueur aJ) {
+            //Carreau --> Aucune action spéciale
+            if(res.getNomCarreau() != null) {
+                System.out.println("Carreau = " + res.getNomCarreau() + ", case n° " + res.getNumeroCarreau());
             }
-            else {//TODO: rajouter une condition de type res.getPrixPropriete() != -1 pour, par ex. une case vide
+            
+            //Propriete --> Acheter ou payer le loyer
+            else if (res.getProprietairePropriete() != null) {
+                System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer géré ici
+                aJ.payerLoyer(res.getLoyerPropriete());
+            }
+            else if (res.getPrixPropriete() != -1){ 
                 System.out.println("Vous pouvez acheter cette proprieté.");
                 System.out.println("Prix = " + res.getPrixPropriete() + " €, voulez-vous acheter cette proprieté ? (O/N) ");
                 Scanner sc = new Scanner(System.in);
                 String rep = sc.nextLine().toLowerCase();
                 if (rep.charAt(0) == 'o') {
-                    this.achatPropriete();
+                    //TODO: récupérer la propriete avec le résultat
                 }
             }
-        }
+            else {System.out.println("Cas non identifiée");}
         
-        public void payeLoyer(Jeu.Resultat res) {
-            
-        }
         
-        public void achatPropriete() {
+        //public void achatPropriete() {
             
         }
 }
