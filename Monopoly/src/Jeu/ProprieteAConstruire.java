@@ -13,7 +13,20 @@ public class ProprieteAConstruire extends Propriete {
 		return this.groupe;
 	}
 
+	@Override
 	protected Resultat calculLoyer() {
-		throw new UnsupportedOperationException();
+		Joueur jproprio = this.getProprietaire();
+                int nbPropGroupe = this.groupe.GetNbPropriété(); // nombre de propriété dans le groupe
+                int nbPropGroupePos = jproprio.getNbPropriete(this.groupe); // nombre de propriété de ce groupe posseder par le propriétaire de la Propriété
+                
+                Resultat res = new Resultat();
+                if (nbPropGroupe == nbPropGroupePos) { // si le joueur possede tout 
+                    res.setLoyerPropriete(this.getLoyer()*2);
+                }
+                else { 
+                    res.setLoyerPropriete(this.getLoyer());
+                }
+                return res;
+                
 	}
 }
