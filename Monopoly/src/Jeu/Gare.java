@@ -12,7 +12,7 @@ public class Gare extends Propriete {
 	protected Resultat calculLoyer() {//Modifier l'attribut loyer de la gare ?
             int nbGare = this.getProprietaire().getNbGare();
             
-            int loyerAPayer = this.getLoyer()*(nbGare+1);
+            int loyerAPayer = this.getLoyer()*(nbGare);
             
             Resultat res = new Resultat(this.getPrix(), loyerAPayer, this.getProprietaire());
             return res;
