@@ -65,14 +65,14 @@ public class Resultat {
     
     //Constructeur Vide
     public Resultat() {
-        this.setPrixPropriete(0);
-        this.setLoyerPropriete(0);
-        this.setNumeroCarreau(0);
-        this.setNomCarreau("CARREAU");
-        this.setNomJoueur("JOUEUR");
-        this.setCashJoueur(0);
-        this.setProprietairePropriete(new Joueur(nomJoueur, positionCouranteJoueur));
-        this.setPositionCouranteJoueur(new AutreCarreau(numeroCarreau, nomCarreau));
+        this.setPrixPropriete(-1);
+        this.setLoyerPropriete(-1);
+        this.setNumeroCarreau(-1);
+        this.setNomCarreau(null);
+        this.setNomJoueur(null);
+        this.setCashJoueur(-1);
+        this.setProprietairePropriete(null);
+        this.setPositionCouranteJoueur(null);
     }
     
     //Tout construire
