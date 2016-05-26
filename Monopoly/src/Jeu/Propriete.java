@@ -27,6 +27,7 @@ public abstract class Propriete extends Carreau {
             } else { //Pas de propriétaire
                 return acheterPropriete(j);
             }
+            
 	}
 
 	protected abstract Resultat calculLoyer();
@@ -35,8 +36,12 @@ public abstract class Propriete extends Carreau {
 		return this.proprietaire;
 	}
 
-	protected Resultat acheterPropriete(Joueur aJ) {
-		throw new UnsupportedOperationException();
+	protected Resultat acheterPropriete(Joueur j) {
+		Resultat res = new Resultat();
+                if (j.peuxPayer(this.prix)) {
+                    
+                }
+                return res;
 	}
 
 	public int getPrix() {
