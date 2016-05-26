@@ -6,7 +6,9 @@ public class Compagnie extends Propriete {
             super(numero, nomCarreau, prix, loyer, proprietaire);
         }
 
-	protected int calculLoyer() {
-		throw new UnsupportedOperationException();
+	protected int calculLoyer(int sommeDes) {
+            int nb = proprietaire.getNbCompagnie();
+            String nom = proprietaire.getNom();
+            int loyer = nomCarreau.getLoyer();
 	}
 }
