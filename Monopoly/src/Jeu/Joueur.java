@@ -25,11 +25,15 @@ public class Joueur {
 	}
 
 	public Carreau getPositionCourante() {
-		return this.positionCourante;
+            return this.positionCourante;
 	}
 
+        public void setPositionCourante(Carreau positionCourante) {
+            this.positionCourante = positionCourante;
+        }
+
 	public Carreau Avancer(int aSommeDes) {
-		throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException();
 	}
 
 	public boolean peuxPayer(int aPrix) {
