@@ -18,7 +18,7 @@ public class IHM {
             System.out.println("Destination : " + carreau.getNomCarreau());
 	}
         
-        public boolean infoJoueur(Joueur joueur) {
+        public boolean infoJoueur(Joueur joueur) {//TODO: Afficher la liste de ses proprietes, leurs couleurs en les triant par groupe
             System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+joueur.getCash()+"]");
             System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             
@@ -70,5 +70,16 @@ public class IHM {
         
         //public void achatPropriete() {
             
+        }
+        
+        public void perte(Joueur joueur) {
+            System.out.println("---------------------------");
+            System.out.println("Le joueur "+ joueur.getNom() + " a perdu et est éliminé de la partie !");
+            System.out.println("---------------------------");
+        }
+        public void gagne(Joueur joueur) {
+            System.out.println("---------------------------");
+            System.out.println("Fin de la partie, "+ joueur.getNom() + " a remporter la victoire");
+            System.out.println("---------------------------");
         }
 }

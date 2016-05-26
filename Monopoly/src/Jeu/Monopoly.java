@@ -48,6 +48,10 @@ public class Monopoly {
     public void addJoueur (Joueur joueur) {
         joueurs.add(joueur);
     }
+    
+    public void removeJoueur(Joueur joueur) {
+        joueurs.remove(joueur);
+    }
 
     private void buildGamePlateau(String dataFilename)
     {

@@ -29,15 +29,16 @@ public class Controleur {
             System.out.println("Combien de joueurs participent ?");
             Scanner sc = new Scanner(System.in);
             int i = Integer.parseInt(sc.nextLine());
-            if (i > 0 && i < 7) {
+            if (i > 1 && i < 7) {
                 for (int n = 1; n <= i; n ++) {
                     System.out.println("Entrer le nom du joueur n°" + n + " : ");
                     String nom = sc.nextLine();
                     Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
                     monopoly.addJoueur(joueur);
                 }
+                this.lancePartie();
             }
-            this.lancePartie();
+            else {System.out.println("Erreur : nombre de joueurs");}//TODO: Faire une boucle avec la possibilitée de quitter
         }
         
         public static int lancerDes() {
@@ -68,8 +69,11 @@ public class Controleur {
             int i = 0;
                        
             do {
+                if (i==monopoly.getJoueurs().size()) {  //Si on a fait le tour on recommence.
+                    i=0;
+                }
                 Joueur j = monopoly.getJoueurs().get(i);
-                                
+                
                 if (ihm.infoJoueur(j)) {        //renvoie true si le joueur veut jouer;
                     this.lancerDésAvancer(j);
                     i++;
@@ -77,6 +81,15 @@ public class Controleur {
                 else if (ihm.quitter()) {
                      continuer = false;
                 }
-            } while (monopoly.getJoueurs().size() > 1 && continuer);//Les joueurs hors-jeu doivent être supprimés de la liste.
+                
+                if (j.getCash() < 0) {          //Si le joueur n'a plus d'argent, il a perdu
+                    ihm.perte(j);
+                    monopoly.removeJoueur(j);
+                }
+            } while (monopoly.getJoueurs().size() > 1 && continuer);
+            
+            if (monopoly.getJoueurs().size() == 1) {
+                ihm.gagne(monopoly.getJoueurs().get(0));
+            }
         }
 }
