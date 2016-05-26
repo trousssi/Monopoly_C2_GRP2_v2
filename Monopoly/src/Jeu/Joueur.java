@@ -41,7 +41,7 @@ public class Joueur {
 	}
 
 	public String getNom() {
-            return this.getNom();
+            return this.nomJoueur;
 	}
 
 	public int getNbGare() {

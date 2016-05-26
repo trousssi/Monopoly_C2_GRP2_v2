@@ -12,6 +12,10 @@ public class Monopoly {
     private HashMap<String, Groupe> groupes = new HashMap<>();
     private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
+    public Monopoly() {
+        this.buildGamePlateau("src/Data/data.txt");
+    }
+
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
     }
@@ -79,12 +83,12 @@ public class Monopoly {
                 }
                 else if(caseType.compareTo("G") == 0){
                         System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
+                        Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
                         carreaux.put(Integer.parseInt(data.get(i)[1]), gare);
                 }
                 else if(caseType.compareTo("C") == 0){
                         System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null);
+                        Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
                         carreaux.put(Integer.parseInt(data.get(i)[1]), compagnie);
                 }
                 else if(caseType.compareTo("AU") == 0){

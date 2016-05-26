@@ -15,7 +15,7 @@ public abstract class Propriete extends Carreau {
 
         @Override
 	public Resultat action(Joueur j, int sommeDe) {
-            Resultat res = new Resultat();
+           // Resultat res = new Resultat();
             Joueur jProprio;
             //int l; //loyer --> voir résultat
             jProprio = getProprietaire();
@@ -39,7 +39,9 @@ public abstract class Propriete extends Carreau {
 	protected Resultat acheterPropriete(Joueur j) {
 		Resultat res = new Resultat();
                 if (j.peuxPayer(this.prix)) {
-                    
+                    res.setPrixPropriete(prix);
+                } else {
+                    res.setPrixPropriete(-2);
                 }
                 return res;
 	}

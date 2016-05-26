@@ -36,10 +36,10 @@ public class Test {
                                         //carreaux.put(data.get(i)[1], car);
 				}
 				else if(caseType.compareTo("G") == 0){
-					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]+ "\t " + data.get(i)[3]);
 				}
 				else if(caseType.compareTo("C") == 0){
-					System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1] );
 				}
 				else if(caseType.compareTo("AU") == 0){
 					System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
