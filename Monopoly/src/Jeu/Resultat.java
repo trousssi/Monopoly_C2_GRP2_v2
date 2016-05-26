@@ -15,8 +15,8 @@ import java.util.HashMap;
 public class Resultat {
 //Attributs et Constructeurs
     //Propriété
-    private int prixPropriete;
-    private int loyerPropriete;
+    private int prixPropriete =-1;
+    private int loyerPropriete =-1;
     public Joueur proprietairePropriete;
     public Resultat(int prixPropriete, int loyerPropriete, Joueur proprietairePropriete) {
         this.setPrixPropriete(prixPropriete);
@@ -26,7 +26,7 @@ public class Resultat {
     
     
     //Carreau
-    private int numeroCarreau;
+    private int numeroCarreau =-1;
     private String nomCarreau;
     public Resultat(int numeroCarreau, String nomCarreau) {
         this.setNumeroCarreau(numeroCarreau);
@@ -68,11 +68,11 @@ public class Resultat {
         this.setPrixPropriete(-1);
         this.setLoyerPropriete(-1);
         this.setNumeroCarreau(-1);
-        this.setNomCarreau(null);
-        this.setNomJoueur(null);
+        this.setNomCarreau("CARREAU");
+        this.setNomJoueur("JOUEUR");
         this.setCashJoueur(-1);
-        this.setProprietairePropriete(null);
-        this.setPositionCouranteJoueur(null);
+        //this.setProprietairePropriete(new Joueur(nomJoueur, positionCouranteJoueur));
+        //this.setPositionCouranteJoueur(new AutreCarreau(numeroCarreau, nomCarreau));
     }
     
     //Tout construire
