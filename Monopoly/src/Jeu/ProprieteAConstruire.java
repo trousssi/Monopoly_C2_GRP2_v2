@@ -20,7 +20,7 @@ public class ProprieteAConstruire extends Propriete {
                 int nbPropGroupePos = jproprio.getNbPropriete(this.groupe); // nombre de propriété de ce groupe posseder par le propriétaire de la Propriété
                 
                 Resultat res = new Resultat();
-                if (nbPropGroupe == nbPropGroupePos) { // si le joueur possede tout 
+                if (nbPropGroupe == nbPropGroupePos) { // si le joueur possede tout alors le loyer du terrain est doublé 
                     res.setLoyerPropriete(this.getLoyer()*2);
                 }
                 else { 
