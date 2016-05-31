@@ -10,23 +10,22 @@ public class ProprieteAConstruire extends Propriete {
 
         
 	public Groupe getGroupe() {
-		return this.groupe;
+	return this.groupe;
 	}
-
+        //Calcule le loyer à payer lorsqu'on tombe sur une propriete à construire appartenant à un joueur.
 	@Override
-	protected Resultat calculLoyer(int sommeDe) {
-		Joueur jproprio = this.getProprietaire();
-                int nbPropGroupe = this.groupe.GetNbPropriété(); // nombre de propriété dans le groupe
-                int nbPropGroupePos = jproprio.getNbPropriete(this.groupe); // nombre de propriété de ce groupe posseder par le propriétaire de la Propriété
-                
-                Resultat res = new Resultat();
-                if (nbPropGroupe == nbPropGroupePos) { // si le joueur possede tout alors le loyer du terrain est doublé 
-                    res.setLoyerPropriete(this.getLoyer()*2);
-                }
-                else { 
-                    res.setLoyerPropriete(this.getLoyer());
-                }
-                return res;
-                
+	protected Resultat calculLoyer(int sommeDes) { // sommeDes n'est pas utilisé.
+            Joueur jproprio = this.getProprietaire(); // Proprietaire de la ProprieteAConstruire
+            int nbPropGroupe = this.groupe.GetNbPropriété(); // Nombre de propriété dans le groupe de couleur de la ProprieteAConstruire
+            int nbPropGroupePossede = jproprio.getNbPropriete(this.groupe); // Nombre de propriété de ce groupe possèdées par le propriétaire de la ProprieteAConstruire
+
+            Resultat res = new Resultat();
+            if (nbPropGroupe == nbPropGroupePossede) { // Si le joueur possède toutes les propriétés du groupe de couleur de la ProprieteAConstruire
+                res.setLoyerPropriete(this.getLoyer()*2); // Alors on double le loyer nu
+            }
+            else { 
+                res.setLoyerPropriete(this.getLoyer()); // Sinon le loyer nu reste celui d'origine
+            }
+            return res;
 	}
 }
