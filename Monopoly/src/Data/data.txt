@@ -19,9 +19,9 @@ AU,18,Caisse de Communauté
 P,19,Av. Mozart,orange,180,14,70,200,550,750,950,100,100
 P,20,Place Pigalle,orange,200,16,80,220,600,800,1000,100,100
 AU,21,Parc Gratuit,0
-P,22,Bd Malesherbes,rouge,220,18,90,250,700,875,1050,150,150
+P,22,Av. Matignon,rouge,220,18,90,250,700,875,1050,150,150
 AU,23,Chance
-P,24,Av. Matignon,rouge,220,18,90,250,700,875,1050,150,150
+P,24,Bd Malesherbes,rouge,220,18,90,250,700,875,1050,150,150
 P,25,Av. Henri-Martin,rouge,240,20,100,300,750,925,1100,150,150
 G,26,Gare du Nord,200
 P,27,Faub. Saint-Honoré,jaune,260,22,110,330,800,975,1150,150,150

@@ -24,7 +24,8 @@ public class Monopoly {
         buildGamePlateau(dataFilename);
     }
 
-    public Carreau AvancerJoueur(Joueur joueur, int sommeDes) {
+        
+    public Carreau AvancerJoueur(Joueur joueur, int sommeDes) { // Méthode permettant au pion du joueur d'avancer dans le jeu en fonction de la somme des dés lancés.
         Carreau carreau = joueur.getPositionCourante();
         int numCar = carreau.getNumero();
         carreau = this.getCarreau(numCar+sommeDes);
@@ -55,6 +56,7 @@ public class Monopoly {
 
     private void buildGamePlateau(String dataFilename)
     {
+        // Création des groupes de propriétés.
         Groupe bleuFonce = new Groupe(CouleurPropriete.bleuFonce);
         groupes.put(CouleurPropriete.bleuFonce.toString(), bleuFonce);
         Groupe orange = new Groupe(CouleurPropriete.orange);
@@ -72,36 +74,36 @@ public class Monopoly {
         Groupe rouge = new Groupe(CouleurPropriete.rouge);
         groupes.put(CouleurPropriete.rouge.toString(), rouge);
 
-        try{
-            ArrayList<String[]> data = readDataFile(dataFilename, ",");
+        
+        try{ // Lecture du fichier "src/Data/data.txt"
+            ArrayList<String[]> data = readDataFile(dataFilename, ","); // data contient toutes les chaines de caracteres entre les virgules d'une ligne.
 
-            //TODO: create cases instead of displaying
             for(int i=0; i<data.size(); ++i){
-                String caseType = data.get(i)[0];
-                if(caseType.compareTo("P") == 0){
-                        System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, groupes.get(data.get(i)[3]));
-                        carreaux.put(Integer.parseInt(data.get(i)[1]), prop);
-                        groupes.get(data.get(i)[3]).addPropriete(prop);
+                String caseType = data.get(i)[0]; // Lit le type de la case (1ère chaine de caractere de la ligne) et le stocke dans caseType
+                if(caseType.compareTo("P") == 0){ // Si la case est une Propriété
+                    System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, groupes.get(data.get(i)[3]));
+                    carreaux.put(Integer.parseInt(data.get(i)[1]), prop);
+                    groupes.get(data.get(i)[3]).addPropriete(prop);
 
                 }
-                else if(caseType.compareTo("G") == 0){
-                        System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
-                        carreaux.put(Integer.parseInt(data.get(i)[1]), gare);
+                else if(caseType.compareTo("G") == 0){ // Si la case est une Gare
+                    System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
+                    carreaux.put(Integer.parseInt(data.get(i)[1]), gare);
                 }
-                else if(caseType.compareTo("C") == 0){
-                        System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
-                        carreaux.put(Integer.parseInt(data.get(i)[1]), compagnie);
+                else if(caseType.compareTo("C") == 0){ // Si la case est une Compagnie
+                    System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
+                    carreaux.put(Integer.parseInt(data.get(i)[1]), compagnie);
                 }
-                else if(caseType.compareTo("AU") == 0){
-                        System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                        AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
-                        carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
+                else if(caseType.compareTo("AU") == 0){ // Si la case est un Autre Carreau
+                    System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
+                    carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
                 }
-                else {
-                        System.err.println("[buildGamePleateau()] : Invalid Data type");
+                else { // S'il y a une erreur de lecture dans le data.
+                    System.err.println("[buildGamePleateau()] : Invalid Data type");
                 }
 
             }
@@ -122,7 +124,7 @@ public class Monopoly {
         BufferedReader reader  = new BufferedReader(new FileReader(filename));
         String line = null;
         while((line = reader.readLine()) != null){
-                data.add(line.split(token));
+            data.add(line.split(token));
         }
         reader.close();
 

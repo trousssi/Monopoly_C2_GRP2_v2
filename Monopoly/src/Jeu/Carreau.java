@@ -14,7 +14,7 @@ public abstract class Carreau {
     }
 
     public int getNumero() {
-            return this.numero;
+        return this.numero;
     }
         
     public abstract Resultat action(Joueur j, int sommeDes);
