@@ -43,7 +43,9 @@ public class IHM {
             else { return false; }
         }
         
-        public void action(Resultat res, Joueur aJ) {
+        public int action(Resultat res, Joueur j) {
+            Resultat retour = new Resultat();
+            
             //Carreau --> Aucune action spéciale
             if(res.getNomCarreau() != null) {
                 System.out.println("Carreau = " + res.getNomCarreau() + ", case n° " + res.getNumeroCarreau());
@@ -52,23 +54,25 @@ public class IHM {
             //Propriete --> Acheter ou payer le loyer
             else if (res.getProprietairePropriete() != null) {
                 System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer géré ici
-                aJ.payerLoyer(res.getLoyerPropriete());
+                return 1;// On paye le loyer 
             }
-            else if (res.getPrixPropriete() != -1){ 
+            else if(res.getPrixPropriete() == -2) {
+                System.out.println("Vous ne pouvez pas acheter cette propriete");
+            }
+            else if (res.getPrixPropriete() != -1) {               
                 System.out.println("Vous pouvez acheter cette proprieté.");
                 System.out.println("Prix = " + res.getPrixPropriete() + " €, voulez-vous acheter cette proprieté ? (O/N) ");
                 Scanner sc = new Scanner(System.in);
                 String rep = sc.nextLine().toLowerCase();
                 if (rep.charAt(0) == 'o') {
-                    //TODO: récupérer la propriete avec le résultat
-                } else {
-                    
-                }
+                    return 2;//On lance l'achat de la proprieté
+                } 
             }
-            else {System.out.println("Cas non identifiée");}
+            else {
+                System.out.println("Cas non identifiée");
+            }
         
-        
-        //public void achatPropriete() {
+            return 0;
             
         }
         

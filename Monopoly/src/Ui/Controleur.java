@@ -45,24 +45,36 @@ public class Controleur {
             return RANDOM.nextInt(3)+1;
         }
         
-	private Carreau lancerDésAvancer(Joueur aJ) {
+	private Carreau lancerDésAvancer(Joueur j) {
             int resDes1 = lancerDes();
             int resDes2 = lancerDes();
             int sommeDes = resDes1+resDes2;
             if (resDes1 == resDes2) {       //Gérer le cas des doubles
-                Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
-                ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
-                Jeu.Resultat res = carreau.action(aJ,sommeDes);
-                ihm.action(res, aJ);
+                //TODO: Afficher le double
+                Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
+                ihm.messageJoueurAvance(j, sommeDes, carreau);       
+                Jeu.Resultat res = carreau.action(j,sommeDes);
+                ihm.action(res, j);
             }
             
-            Carreau carreau = monopoly.AvancerJoueur(aJ, sommeDes);
-            ihm.messageJoueurAvance(aJ, sommeDes, carreau);       
-            Jeu.Resultat res = carreau.action(aJ,sommeDes);
-            ihm.action(res, aJ);
+            Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
+            ihm.messageJoueurAvance(j, sommeDes, carreau);       
+            Jeu.Resultat res = carreau.action(j,sommeDes);
+            this.action(ihm.action(res, j), j);
             
             return carreau;
 	}
+        
+        private void action (int cas, Joueur j) {
+            switch (cas) {
+                case 0:
+                    //Il ne se passe rien
+                break;
+                case 2:
+                    //On veut acheter une propriete et on peut, il ne se passe rien, déjà géré dans Propriete
+                    
+            }
+        }
         
         private void lancePartie() {
             boolean continuer = true;
@@ -79,7 +91,7 @@ public class Controleur {
                     i++;
                 }
                 else if (ihm.quitter()) {
-                     continuer = false;
+                    continuer = false;
                 }
                 
                 if (j.getCash() < 0) {          //Si le joueur n'a plus d'argent, il a perdu
