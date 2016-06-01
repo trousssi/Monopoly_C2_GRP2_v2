@@ -1,14 +1,14 @@
 package Jeu;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Joueur {
 	private String nomJoueur;
 	private int cash = 1500;
         private Carreau positionCourante;
-	public ArrayList<Gare> gares = new ArrayList<Gare>();
-        public ArrayList<Compagnie> compagnies = new ArrayList<Compagnie>();
-        public ArrayList<ProprieteAConstruire> proprietesAconstruire = new ArrayList<ProprieteAConstruire>();
+	public HashSet<Gare> gares = new HashSet<Gare>();
+        public HashSet<Compagnie> compagnies = new HashSet<Compagnie>();
+        public HashSet<ProprieteAConstruire> proprietesAconstruire = new HashSet<ProprieteAConstruire>();
 
         public Joueur(String nomJoueur, Carreau positionCourante) {
             this.nomJoueur = nomJoueur;
@@ -16,12 +16,12 @@ public class Joueur {
         }
 
         
-	public void payerLoyer(int aL) {
-            cash-=aL;
+	public void payerLoyer(int loyer) {
+            cash-=loyer;
 	}
 
-	public void recevoirLoyer(int aL) {
-            cash+=aL;
+	public void recevoirLoyer(int loyer) {
+            cash+=loyer;
 	}
 
 	public Carreau getPositionCourante() {
@@ -31,10 +31,6 @@ public class Joueur {
         public void setPositionCourante(Carreau positionCourante) {
             this.positionCourante = positionCourante;
         }
-
-	public Carreau Avancer(int aSommeDes) {
-            throw new UnsupportedOperationException();
-	}
 
 	public boolean peuxPayer(int aPrix) {
             return this.getCash()>=aPrix;
@@ -54,6 +50,20 @@ public class Joueur {
                 gare.setProprietaire(this);
             }
         }
+        
+        public void addCompagnie(Compagnie compagnie) {
+            if (compagnie.getProprietaire() == null) {
+                this.getCompagnies().add(compagnie);
+                compagnie.setProprietaire(this);
+            }
+        }
+        
+        public void addProprieteAConstruire(ProprieteAConstruire p) {
+            if (p.getProprietaire() == null) {
+                this.getProprietesAconstruire().add(p);
+                p.setProprietaire(this);
+            }
+        } 
 
 	public int getNbCompagnie() {
 		return this.getCompagnies().size();
@@ -67,12 +77,16 @@ public class Joueur {
             return cash;
         }
 
-        public ArrayList<Gare> getGares() {
+        public HashSet<Gare> getGares() {
             return gares;
         }
 
-        public ArrayList<Compagnie> getCompagnies() {
+        public HashSet<Compagnie> getCompagnies() {
             return compagnies;
+        }
+
+        public HashSet<ProprieteAConstruire> getProprietesAconstruire() {
+            return proprietesAconstruire;
         }
         
 }
