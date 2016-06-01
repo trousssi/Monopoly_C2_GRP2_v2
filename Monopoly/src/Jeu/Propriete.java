@@ -21,7 +21,9 @@ public abstract class Propriete extends Carreau {
             jProprio = getProprietaire();
             if (jProprio!=null) { //Il y a un propriétaire
                 if (j!=jProprio) { //S'il n'est pas propriétaire
-                    return calculLoyer(sommeDe);
+                    Resultat res = calculLoyer(sommeDe);
+                    j.payerLoyer(res.getLoyerPropriete()); //Il doit forcément payer le loyer
+                    return res;
                 }
                 else {return null;} //Le joueur courant est propriétaire : rien à faire
             } else { //Pas de propriétaire
