@@ -16,7 +16,7 @@ public class ProprieteAConstruire extends Propriete {
 	@Override
 	protected Resultat calculLoyer(int sommeDes) { // sommeDes n'est pas utilisé.
             Joueur jproprio = this.getProprietaire(); // Proprietaire de la ProprieteAConstruire
-            int nbPropGroupe = this.groupe.GetNbPropriété(); // Nombre de propriété dans le groupe de couleur de la ProprieteAConstruire
+            int nbPropGroupe = this.groupe.getNbPropriete(); // Nombre de propriété dans le groupe de couleur de la ProprieteAConstruire
             int nbPropGroupePossede = jproprio.getNbPropriete(this.groupe); // Nombre de propriété de ce groupe possèdées par le propriétaire de la ProprieteAConstruire
 
             Resultat res = new Resultat();

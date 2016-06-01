@@ -3,6 +3,7 @@ package Ui;
 import Jeu.Monopoly;
 import Jeu.Joueur;
 import Jeu.Carreau;
+import Jeu.Propriete;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -60,19 +61,20 @@ public class Controleur {
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
-            this.action(ihm.action(res, j), j);
+            this.action(ihm.action(res, j), j, res);
             
             return carreau;
 	}
         
-        private void action (int cas, Joueur j) {
+        private void action (int cas, Joueur j, Jeu.Resultat res) {
             switch (cas) {
                 case 0:
                     //Il ne se passe rien
                 break;
                 case 2:
-                    //On veut acheter une propriete et on peut, il ne se passe rien, déjà géré dans Propriete
-                    
+                    //On veut acheter une propriete et on peut
+                    j.payerLoyer(res.getPrixPropriete());
+                   
             }
         }
         
