@@ -59,7 +59,7 @@ public class Controleur {
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
-            
+            ihm.action(res, j);
             return carreau;
 	}
         
