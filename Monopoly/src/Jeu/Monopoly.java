@@ -33,9 +33,6 @@ public class Monopoly {
         return carreau;
     }
 
-    public void afficherEtatJoueurs() {
-        throw new UnsupportedOperationException();
-    }
 
     public Carreau getCarreau(int numCarreau) {
         numCarreau = numCarreau % 40;
@@ -81,29 +78,29 @@ public class Monopoly {
             for(int i=0; i<data.size(); ++i){
                 String caseType = data.get(i)[0]; // Lit le type de la case (1ère chaine de caractere de la ligne) et le stocke dans caseType
                 if(caseType.compareTo("P") == 0){ // Si la case est une Propriété
-                    System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    //System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                     ProprieteAConstruire prop = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), null, groupes.get(data.get(i)[3]));
                     carreaux.put(Integer.parseInt(data.get(i)[1]), prop);
                     groupes.get(data.get(i)[3]).addPropriete(prop);
 
                 }
                 else if(caseType.compareTo("G") == 0){ // Si la case est une Gare
-                    System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    //System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                     Gare gare = new Gare(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
                     carreaux.put(Integer.parseInt(data.get(i)[1]), gare);
                 }
                 else if(caseType.compareTo("C") == 0){ // Si la case est une Compagnie
-                    System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    //System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                     Compagnie compagnie = new Compagnie(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), 0, null);
                     carreaux.put(Integer.parseInt(data.get(i)[1]), compagnie);
                 }
                 else if(caseType.compareTo("AU") == 0){ // Si la case est un Autre Carreau
-                    System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    //System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
                     AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
                     carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
                 }
                 else { // S'il y a une erreur de lecture dans le data.
-                    System.err.println("[buildGamePleateau()] : Invalid Data type");
+                    //System.err.println("[buildGamePleateau()] : Invalid Data type");
                 }
 
             }

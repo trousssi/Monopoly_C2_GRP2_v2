@@ -3,6 +3,7 @@ package Ui;
 import Jeu.Joueur;
 import Jeu.Carreau;
 import Jeu.Resultat;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class IHM {
@@ -12,32 +13,32 @@ public class IHM {
         this.controleur = controleur;
     }
 
+    
+        public ArrayList<String> debutPartie () {
+            ArrayList<String> joueurs = new ArrayList<>();
+            System.out.println("Combien de joueurs participent ?");
+            Scanner sc = new Scanner(System.in);
+            int i = Integer.parseInt(sc.nextLine());
+            if (i > 1 && i < 7) {   
+                for (int n = 1; n<i+1; n++) {
+                    System.out.println("Entrer le nom du joueur n°" + n + " : ");
+                    String nom = sc.nextLine();
+                    joueurs.add(nom);
+                }
+                return joueurs;
+            } else {
+                System.out.println("Erreur, entrez un nombre de joueurs entre 2 et 6 inclus");
+                return joueurs;
+            }
+
+        }
+    
+    
 	public void messageJoueurAvance(Joueur joueur, int sommeDes, Carreau carreau) {
             System.out.println("[Joueur = "+joueur.getNom()+"] \nLa somme de dés vaut : " + sommeDes);
             //System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             System.out.println("Destination : " + carreau.getNomCarreau());
             if (carreau.getNomCarreau().contains("Gare")) {
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
             } 
 	}
         
@@ -55,16 +56,29 @@ public class IHM {
             //else { return false; }
         }
         
-        public boolean quitter() {
-            System.out.println("Voulez-vous quitter le jeu ? (O/N) ");
-            Scanner sc = new Scanner(System.in);
+        public boolean debutTour(ArrayList<Joueur> joueurs, int nbTour) {
+            System.out.println("-------------------------");
+            System.out.println("---------" + "Tour n°" + nbTour + "--------");
+            System.out.println("-------------------------");
+
             
-            String rep = sc.nextLine().toLowerCase();
-            if (rep.charAt(0) == 'o') {
-                return true;
+            for (Joueur j : joueurs) {
+                System.out.println("Joueur : " + j.getNom());
+                System.out.println("Cash : " + j.getCash());
+                System.out.println("Position : Case n°" + j.getPositionCourante().getNumero() + " " + j.getPositionCourante().getNomCarreau());
+                System.out.println("-------------------------");
             }
-            else { return false; }
+            String rep = "";
+            while (!"o".equals(rep) && !"n".equals(rep) && rep != null) {
+                System.out.println("Voulez-vous Continuer ? (O/N)");
+                Scanner sc = new Scanner(System.in);
+                rep = sc.nextLine().toLowerCase();
+            }
+
+            return rep.charAt(0) == 'o';
+            
         }
+        
         
         public int action(Resultat res, Joueur j) {
             Resultat retour = new Resultat();
@@ -89,17 +103,18 @@ public class IHM {
                 System.out.println("Vous ne pouvez pas acheter cette propriete");
             }
             else if (res.getPrixPropriete() != -1) {               
-                System.out.println("Vous pouvez acheter cette proprieté.");
-                System.out.println("Prix = " + res.getPrixPropriete() + " €, voulez-vous acheter cette proprieté ? (O/N) ");
-                Scanner sc = new Scanner(System.in);
-                String rep = sc.nextLine().toLowerCase();
+                String rep = "";
+                while (!"o".equals(rep) && !"n".equals(rep) && rep != null) {
+                  System.out.println("Prix = " + res.getPrixPropriete() + " €, voulez-vous acheter cette proprieté ? (O/N) ");
+                    Scanner sc = new Scanner(System.in);
+                    rep = sc.nextLine().toLowerCase();
+                }
+
                 if (rep.charAt(0) == 'o') {
+                    System.out.println(j.getPositionCourante().getNomCarreau() + " achetée");
                     return 2;//On lance l'achat de la proprieté
-                } 
-            }
-            else {
-                System.out.println("Cas non identifié");
-            }
+                    } 
+                }
         
             return 0;
             

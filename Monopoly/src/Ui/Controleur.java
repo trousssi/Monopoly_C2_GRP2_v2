@@ -4,6 +4,7 @@ import Jeu.Monopoly;
 import Jeu.Joueur;
 import Jeu.Carreau;
 import Jeu.Propriete;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,20 +28,26 @@ public class Controleur {
 	}
         
         public void initPartie () {
-            System.out.println("Combien de joueurs participent ?");
-            Scanner sc = new Scanner(System.in);
-            int i = Integer.parseInt(sc.nextLine());
-            if (i > 1 && i < 7) {
-                for (int n = 1; n <= i; n ++) {
-                    System.out.println("Entrer le nom du joueur n°" + n + " : ");
-                    String nom = sc.nextLine();
-                    Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
-                    monopoly.addJoueur(joueur);
-                }
-                this.lancePartie();
+            ArrayList<String> joueurs = ihm.debutPartie();
+            while (joueurs.size() < 2 || joueurs.size() > 6) {
+                joueurs = ihm.debutPartie();
             }
-            else {System.out.println("Erreur : nombre de joueurs");}//TODO: Faire une boucle avec la possibilitée de quitter
-        }
+            for (String nom : joueurs) {
+                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
+                monopoly.addJoueur(joueur);
+
+            }
+            this.lancePartie();
+            /*            if (i > 1 && i < 7) {
+            for (int n = 1; n <= i; n ++) {
+            System.out.println("Entrer le nom du joueur n°" + n + " : ");
+            String nom = sc.nextLine();
+            Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
+            monopoly.addJoueur(joueur);
+            }
+            this.lancePartie();
+            }
+        else {System.out.println("Erreur : nombre de joueurs");}//TODO: Faire une boucle avec la possibilitée de quitter*/        }
         
         public static int lancerDes() {
             return RANDOM.nextInt(6)+1;
@@ -89,22 +96,25 @@ public class Controleur {
         private void lancePartie() {
             boolean continuer = true;
             int i = 0;
+            int nbTour = 1;
                        
             do {
                 if (i==monopoly.getJoueurs().size()) {  //Si on a fait le tour on recommence.
                     i=0;
+                    nbTour++;
+                    if (!ihm.debutTour(monopoly.getJoueurs(), nbTour)) {
+                        continuer = false;
+                    }
+
                 }
                 Joueur j = monopoly.getJoueurs().get(i);
-                
-                if (ihm.infoJoueur(j)) {        //renvoie true si le joueur veut jouer;
+
+                if (continuer && ihm.infoJoueur(j)) {        //renvoie true si le joueur veut jouer;
                     this.lancerDésAvancer(j);
                     i++;
                 }
-                else if (ihm.quitter()) {
-                    continuer = false;
-                }
                 
-                if (j.getCash() < 0) {          //Si le joueur n'a plus d'argent, il a perdu
+                if (j.getCash() < 0 && continuer) {          //Si le joueur n'a plus d'argent, il a perdu
                     ihm.perte(j);
                     monopoly.removeJoueur(j);
                 }
