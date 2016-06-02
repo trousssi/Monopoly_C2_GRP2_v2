@@ -25,7 +25,7 @@ public class Monopoly {
     }
 
         
-    public Carreau AvancerJoueur(Joueur joueur, int sommeDes) { // Méthode permettant au pion du joueur d'avancer dans le jeu en fonction de la somme des dés lancés.
+    public Carreau avancerJoueur(Joueur joueur, int sommeDes) { // Méthode permettant au pion du joueur d'avancer dans le jeu en fonction de la somme des dés lancés.
         Carreau carreau = joueur.getPositionCourante();
         int numCar = carreau.getNumero();
         carreau = this.getCarreau(numCar+sommeDes);
