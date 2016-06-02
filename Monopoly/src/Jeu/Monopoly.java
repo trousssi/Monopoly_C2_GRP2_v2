@@ -49,6 +49,7 @@ public class Monopoly {
     
     public void removeJoueur(Joueur joueur) {
         joueurs.remove(joueur);
+        joueur = null;
     }
 
     private void buildGamePlateau(String dataFilename)

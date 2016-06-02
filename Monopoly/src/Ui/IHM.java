@@ -16,7 +16,7 @@ public class IHM {
     
         public ArrayList<String> debutPartie () {
             ArrayList<String> joueurs = new ArrayList<>();
-            System.out.println("Combien de joueurs participent ?");
+            System.out.println("Combien de joueurs participent ? ");
             Scanner sc = new Scanner(System.in);
             int i = Integer.parseInt(sc.nextLine());
             if (i > 1 && i < 7) {   
@@ -34,7 +34,11 @@ public class IHM {
         }
     
     
-	public void messageJoueurAvance(Joueur joueur, int sommeDes, Carreau carreau) {
+	public void messageJoueurAvance(Joueur joueur, int sommeDes, Carreau carreau, boolean desDouble) {
+            if (desDouble) {
+                System.out.println("Vous avez fait un double, vous pouvez rejouer !!");
+            }
+            System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+joueur.getCash()+"]");
             System.out.println("[Joueur = "+joueur.getNom()+"] \nLa somme de dés vaut : " + sommeDes);
             //System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             System.out.println("Destination : " + carreau.getNomCarreau());
@@ -95,7 +99,7 @@ public class IHM {
             }
             
             //Propriete --> Acheter ou payer le loyer
-            else if (res.getProprietairePropriete() != null) {
+            else if (res.getProprietairePropriete() != null && res.getProprietairePropriete() != j) {
                 System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer
                
             }
@@ -115,6 +119,9 @@ public class IHM {
                     return 2;//On lance l'achat de la proprieté
                     } 
                 }
+            else if (res.getProprietairePropriete() == j){
+                System.out.println("Vous êtes le proprietaire de cette case.");
+            }
         
             return 0;
             

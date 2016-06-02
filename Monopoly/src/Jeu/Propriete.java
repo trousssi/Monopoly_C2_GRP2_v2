@@ -26,7 +26,11 @@ public abstract class Propriete extends Carreau {
                     res.setProprietairePropriete(jProprio);
                     return res;
                 }
-                else {return new Resultat();} //Le joueur courant est propriétaire : rien à faire
+                else {
+                    Resultat res = new Resultat();
+                    res.setProprietairePropriete(j);
+                    return res;
+                } //Le joueur courant est propriétaire : rien à faire
             } else { //Pas de propriétaire
                 return acheterPropriete(j);
             }
