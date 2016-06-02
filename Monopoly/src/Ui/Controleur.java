@@ -38,19 +38,6 @@ public class Controleur {
             }
             
             this.lancePartie();
-            /*            
-            if (i > 1 && i < 7) {
-            for (int n = 1; n <= i; n ++) {
-                System.out.println("Entrer le nom du joueur n°" + n + " : ");
-                String nom = sc.nextLine();
-                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
-                monopoly.addJoueur(joueur);
-            }
-            
-            this.lancePartie();
-            }
-            else {System.out.println("Erreur : nombre de joueurs");}//TODO: Faire une boucle avec la possibilitée de quitter
-            */
         }
         
         public static int lancerDes() {
@@ -72,13 +59,6 @@ public class Controleur {
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
-            /*
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println("nomCarreau" + res.getNomCarreau());
-            System.out.println("numCarreau" + res.getNumeroCarreau());
-            System.out.println("proprietaire" + res.getProprietairePropriete());2*/            this.action(ihm.action(res, j), j, res);
             
             return carreau;
 	}
@@ -113,12 +93,12 @@ public class Controleur {
                 }
                 Joueur j = monopoly.getJoueurs().get(i);
 
-                if (continuer && ihm.infoJoueur(j)) {        //renvoie true si le joueur veut continuer à jouer;
+                if (continuer) {        //renvoie true si le joueur veut continuer à jouer;
                     this.lancerDésAvancer(j);
                     i++;
                 }
                 
-                if (j.getCash() < 0 && continuer) {          //Si le joueur n'a plus d'argent, il a perdu
+                if (j.getCash() < 0) {          //Si le joueur n'a plus d'argent, il a perdu
                     ihm.perte(j);
                     monopoly.removeJoueur(j);
                 }
