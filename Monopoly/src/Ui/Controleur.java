@@ -43,7 +43,7 @@ public class Controleur {
         }
         
         public static int lancerDes() {
-            return RANDOM.nextInt(3)+1;
+            return RANDOM.nextInt(6)+1;
         }
         
 	private Carreau lancerDésAvancer(Joueur j) {
@@ -61,7 +61,13 @@ public class Controleur {
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
-            this.action(ihm.action(res, j), j, res);
+            /*
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("nomCarreau" + res.getNomCarreau());
+            System.out.println("numCarreau" + res.getNumeroCarreau());
+            System.out.println("proprietaire" + res.getProprietairePropriete());2*/            this.action(ihm.action(res, j), j, res);
             
             return carreau;
 	}
@@ -74,7 +80,9 @@ public class Controleur {
                 case 2:
                     //On veut acheter une propriete et on peut
                     j.payerLoyer(res.getPrixPropriete());
-                   
+                    res.getProprieteAchete().setProprietaire(j);
+                break;
+                    
             }
         }
         

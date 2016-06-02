@@ -17,7 +17,9 @@ public class Resultat {
     //Propriété
     private int prixPropriete =-1;
     private int loyerPropriete =-1;
-    public Joueur proprietairePropriete;
+    private Joueur proprietairePropriete;
+    
+    private Propriete proprieteAchete;
     public Resultat(int prixPropriete, int loyerPropriete, Joueur proprietairePropriete) {
         this.setPrixPropriete(prixPropriete);
         this.setLoyerPropriete(loyerPropriete);
@@ -89,6 +91,14 @@ public class Resultat {
         this.setPositionCouranteJoueur(positionCouranteJoueur);
     }
 //Getters
+
+    public Propriete getProprieteAchete() {
+        return proprieteAchete;
+    }
+
+    public void setProprieteAchete(Propriete proprieteAchete) {
+        this.proprieteAchete = proprieteAchete;
+    }
 
     public int getPrixPropriete() {
         return prixPropriete;

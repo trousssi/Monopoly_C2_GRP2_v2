@@ -20,8 +20,16 @@ public class Gare extends Propriete {
             int nbGare = this.getProprietaire().getNbGare(); //Nombre de garde du proprietaire de la gare
             
             int loyerAPayer = this.getLoyer()*(nbGare); //Application de la règle des gares au loyer à payer
-            
+           
             Resultat res = new Resultat(this.getPrix(), loyerAPayer, this.getProprietaire());
             return res;
 	}
+        
+          @Override
+    public void setProprietaire(Joueur j) {
+        this.proprietaire = j;
+       
+        j.addGare(this);
+    
+    }
 }

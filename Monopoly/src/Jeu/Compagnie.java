@@ -24,4 +24,10 @@ public class Compagnie extends Propriete {
             Resultat res = new Resultat(this.getPrix(), loyerAPayer, this.getProprietaire()); // On renvoie ce qu'on obtient à Résultat.
             return res;
 	}
+
+    @Override
+    public void setProprietaire(Joueur j) {
+        this.proprietaire = j;
+        j.addCompagnie(this);
+    }
 }

@@ -16,20 +16,43 @@ public class IHM {
             System.out.println("[Joueur = "+joueur.getNom()+"] \nLa somme de dés vaut : " + sommeDes);
             //System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             System.out.println("Destination : " + carreau.getNomCarreau());
+            if (carreau.getNomCarreau().contains("Gare")) {
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+            } 
 	}
         
         public boolean infoJoueur(Joueur joueur) {//TODO: Afficher la liste de ses proprietes, leurs couleurs en les triant par groupe
             System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+joueur.getCash()+"]");
             System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             
-            System.out.println("Voulez-vous avancer ? (O/N)");
+            /*System.out.println("Voulez-vous avancer ? (O/N)");
             Scanner sc = new Scanner(System.in);
             
             String rep = sc.nextLine().toLowerCase();
             if (rep.charAt(0) == 'o') {
-                return true;
-            }
-            else { return false; }
+            return true;
+            }*/return true;
+            //else { return false; }
         }
         
         public boolean quitter() {
@@ -47,14 +70,20 @@ public class IHM {
             Resultat retour = new Resultat();
             
             //Carreau --> Aucune action spéciale
-            if(res.getNomCarreau() != null) {
+            /*   System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("nomCarreau" + res.getNomCarreau());
+            System.out.println("numCarreau" + res.getNumeroCarreau());
+            System.out.println("proprietaire" + res.getProprietairePropriete().getNom());*/
+            if(res.getNomCarreau() != null && res.getProprietairePropriete() == null) {
                 System.out.println("Carreau = " + res.getNomCarreau() + ", case n° " + res.getNumeroCarreau());
             }
             
             //Propriete --> Acheter ou payer le loyer
             else if (res.getProprietairePropriete() != null) {
-                System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer géré ici
-                return 1;// On paye le loyer 
+                System.out.println("Loyer = " + res.getLoyerPropriete());//Nom déjà affiché + paiement obligatoire du loyer
+               
             }
             else if(res.getPrixPropriete() == -2) {
                 System.out.println("Vous ne pouvez pas acheter cette propriete");
@@ -69,7 +98,7 @@ public class IHM {
                 } 
             }
             else {
-                System.out.println("Cas non identifiée");
+                System.out.println("Cas non identifié");
             }
         
             return 0;

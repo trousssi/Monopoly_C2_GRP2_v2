@@ -15,6 +15,6 @@ public class Groupe {
         }
 
 	public int getNbPropriete() {
-            throw new UnsupportedOperationException();
+            return this.proprietes.size();
 	}
 }

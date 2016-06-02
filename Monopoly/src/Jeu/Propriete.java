@@ -23,9 +23,10 @@ public abstract class Propriete extends Carreau {
                 if (j!=jProprio) { //S'il n'est pas propriétaire
                     Resultat res = calculLoyer(sommeDe);
                     j.payerLoyer(res.getLoyerPropriete()); //Il doit forcément payer le loyer
+                    res.setProprietairePropriete(jProprio);
                     return res;
                 }
-                else {return null;} //Le joueur courant est propriétaire : rien à faire
+                else {return new Resultat();} //Le joueur courant est propriétaire : rien à faire
             } else { //Pas de propriétaire
                 return acheterPropriete(j);
             }
@@ -42,6 +43,7 @@ public abstract class Propriete extends Carreau {
 		Resultat res = new Resultat();
                 if (j.peuxPayer(this.prix)) {
                     res.setPrixPropriete(prix);
+                    res.setProprieteAchete(this);
                 } else {
                     res.setPrixPropriete(-2);
                 }
@@ -65,8 +67,6 @@ public abstract class Propriete extends Carreau {
             this.loyer = loyer;
         }
 
-        public void setProprietaire(Joueur proprietaire) {
-            this.proprietaire = proprietaire;
-        }
+       public abstract void setProprietaire(Joueur j);
         
 }

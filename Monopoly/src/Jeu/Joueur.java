@@ -45,23 +45,23 @@ public class Joueur {
 	}
         
         public void addGare(Gare gare) { // Ajoute une gare à la liste de gares que possède le joueur
-            if (gare.getProprietaire() == null) {
+            if (gare.getProprietaire() != null) {
                 this.getGares().add(gare);
-                gare.setProprietaire(this);
+              
             }
         }
         
         public void addCompagnie(Compagnie compagnie) {
-            if (compagnie.getProprietaire() == null) {
+            if (compagnie.getProprietaire() != null) {
                 this.getCompagnies().add(compagnie);
-                compagnie.setProprietaire(this);
+                
             }
         }
         
         public void addProprieteAConstruire(ProprieteAConstruire p) {
-            if (p.getProprietaire() == null) {
+            if (p.getProprietaire() != null) {
                 this.getProprietesAconstruire().add(p);
-                p.setProprietaire(this);
+               
             }
         } 
 
@@ -69,8 +69,14 @@ public class Joueur {
             return this.getCompagnies().size();
 	}
 
-	public int getNbPropriete(Groupe aGroupe) { // Retourne le nombre de propriétés (qui ne sont pas des gares ou des compagnies) que possède le joueur.
-            throw new UnsupportedOperationException();
+	public int getNbPropriete(Groupe groupe) { // Retourne le nombre de propriétés à contruire du groupe que possède le joueur .
+            int nb = 0;
+            for (ProprieteAConstruire p : this.proprietesAconstruire) {
+                if (p.getGroupe() == groupe ) {
+                    nb++;
+                }
+            }
+            return nb;
 	}
 
         public int getCash() {

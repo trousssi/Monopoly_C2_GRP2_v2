@@ -28,4 +28,9 @@ public class ProprieteAConstruire extends Propriete {
             }
             return res;
 	}
+  @Override
+    public void setProprietaire(Joueur j) {
+        this.proprietaire = j;
+        j.addProprieteAConstruire(this);
+    }
 }
