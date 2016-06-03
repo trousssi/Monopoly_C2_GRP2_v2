@@ -60,6 +60,7 @@ public class Controleur {
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
             ihm.action(res, j);
+            this.action(ihm.action(res, j), j, res);
             return carreau;
 	}
         
