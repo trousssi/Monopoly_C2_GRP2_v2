@@ -33,7 +33,7 @@ public class Controleur {
                 joueurs = ihm.debutPartie();
             }
             for (String nom : joueurs) {
-                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1));
+                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
                 monopoly.addJoueur(joueur);
             }
             
@@ -41,17 +41,16 @@ public class Controleur {
         }
         
         public static int lancerDes() {
-            //return RANDOM.nextInt(6)+1;
-            System.out.println("Lancer dé"); //Juste pour démo
+            return RANDOM.nextInt(6)+1;
+            /*            System.out.println("Lancer dé"); //Juste pour démo
             Scanner sc = new Scanner(System.in);
-            int des = sc.nextInt();
-            return des;
-        }
+            int des = sc.nextInt();*/            
+        /*            return des;*/        }
         
 	private Carreau lancerDésAvancer(Joueur j) {
             int resDes1 = lancerDes();
             int resDes2 = lancerDes();
-            int sommeDes = resDes1+resDes2;
+            int sommeDes = resDes1+resDes2; //Si on a deux dés égaux le joueur joue deux fois
             if (resDes1 == resDes2) { 
                 Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
                 ihm.messageJoueurAvance(j, sommeDes, carreau, true);       
@@ -63,20 +62,20 @@ public class Controleur {
 
             }
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
-            ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
+            ihm.messageJoueurAvance(j, sommeDes, carreau, false);       //Affiche les infos types : nomJoueur, cash, carreau ...
             Jeu.Resultat res = carreau.action(j,sommeDes);
             //ihm.action(res, j);
-            this.action(ihm.action(res, j), j, res);
+            this.action(ihm.action(res, j), j, res); //L'ihm action envoie le cas dans lequel on se trouve sous forme d'entier
             return carreau;
 	}
         
-        private void action (int cas, Joueur j, Jeu.Resultat res) {
+        private void action (int cas, Joueur j, Jeu.Resultat res) { // Selon le cas, on gère les actions à faire
             switch (cas) {
                 case 0:
                     //Il ne se passe rien
                 break;
                 case 2:
-                    //On veut acheter une propriete et on peut
+                    //On veut acheter une propriete et on peut le faire
                     j.payerLoyer(res.getPrixPropriete());
                     res.getProprieteAchete().setProprietaire(j);
                 break;
@@ -84,9 +83,9 @@ public class Controleur {
             }
         }
         
-        private void lancePartie() {
+        private void lancePartie() { //Contient la boucle principale pour le lancement de la partie
             boolean continuer = true;
-            int i = 0;
+            int i = 0; 
             int nbTour = 0;
                        
             do {
