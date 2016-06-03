@@ -57,8 +57,11 @@ public class Controleur {
                 ihm.messageJoueurAvance(j, sommeDes, carreau, true);       
                 Jeu.Resultat res = carreau.action(j,sommeDes);
                 this.action(ihm.action(res, j), j, res);
+                resDes1 = lancerDes();
+                resDes2 = lancerDes();
+                sommeDes = resDes1+resDes2;
+
             }
-            
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
