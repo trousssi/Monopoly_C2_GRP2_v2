@@ -41,7 +41,11 @@ public class Controleur {
         }
         
         public static int lancerDes() {
-            return RANDOM.nextInt(6)+1;
+            //return RANDOM.nextInt(6)+1;
+            System.out.println("Lancer dé");
+            Scanner sc = new Scanner(System.in);
+            int des = sc.nextInt();
+            return des;
         }
         
 	private Carreau lancerDésAvancer(Joueur j) {
@@ -53,13 +57,13 @@ public class Controleur {
                 Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
                 ihm.messageJoueurAvance(j, sommeDes, carreau, true);       
                 Jeu.Resultat res = carreau.action(j,sommeDes);
-                ihm.action(res, j);
+                this.action(ihm.action(res, j), j, res);
             }
             
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       
             Jeu.Resultat res = carreau.action(j,sommeDes);
-            ihm.action(res, j);
+            //ihm.action(res, j);
             this.action(ihm.action(res, j), j, res);
             return carreau;
 	}
