@@ -42,7 +42,7 @@ public class Controleur {
         
         public static int lancerDes() {
             //return RANDOM.nextInt(6)+1;
-            System.out.println("Lancer dé");
+            System.out.println("Lancer dé"); //Juste pour démo
             Scanner sc = new Scanner(System.in);
             int des = sc.nextInt();
             return des;
@@ -52,8 +52,7 @@ public class Controleur {
             int resDes1 = lancerDes();
             int resDes2 = lancerDes();
             int sommeDes = resDes1+resDes2;
-            if (resDes1 == resDes2) {       //Gérer le cas des doubles
-                //TODO: Afficher le double
+            if (resDes1 == resDes2) { 
                 Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
                 ihm.messageJoueurAvance(j, sommeDes, carreau, true);       
                 Jeu.Resultat res = carreau.action(j,sommeDes);

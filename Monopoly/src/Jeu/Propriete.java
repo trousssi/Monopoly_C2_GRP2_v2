@@ -23,6 +23,7 @@ public abstract class Propriete extends Carreau {
                 if (j!=jProprio) { //S'il n'est pas propriétaire
                     Resultat res = calculLoyer(sommeDe);
                     j.payerLoyer(res.getLoyerPropriete()); //Il doit forcément payer le loyer
+                    jProprio.recevoirLoyer(res.getLoyerPropriete());
                     res.setProprietairePropriete(jProprio);
                     return res;
                 }

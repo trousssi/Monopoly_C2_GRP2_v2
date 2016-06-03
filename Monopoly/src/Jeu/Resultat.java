@@ -41,9 +41,7 @@ public class Resultat {
         this.setPrixPropriete(-1);
         this.setLoyerPropriete(-1);
         this.setNumeroCarreau(-1);
-        this.setNomCarreau(null);
-        //this.setProprietairePropriete(new Joueur(nomJoueur, positionCouranteJoueur));
-        //this.setPositionCouranteJoueur(new AutreCarreau(numeroCarreau, nomCarreau));
+
     }
     
 

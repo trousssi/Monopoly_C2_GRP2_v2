@@ -18,7 +18,15 @@ public class IHM {
             ArrayList<String> joueurs = new ArrayList<>();
             System.out.println("Combien de joueurs participent ? ");
             Scanner sc = new Scanner(System.in);
-            int i = Integer.parseInt(sc.nextLine());
+            int i =0;
+            try {
+                i = Integer.parseInt(sc.nextLine());
+
+            } catch (NumberFormatException e) {
+                System.out.println("\033[31mErreur, entrez un nombre de joueurs entre 2 et 6 inclus\033[0m");
+                return joueurs;
+            }
+
             if (i > 1 && i < 7) {   
                 for (int n = 1; n<i+1; n++) {
                     System.out.println("Entrer le nom du joueur n°" + n + " : ");
@@ -35,8 +43,8 @@ public class IHM {
     
     
 	public void messageJoueurAvance(Joueur joueur, int sommeDes, Carreau carreau, boolean desDouble) {
-            System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+joueur.getCash()+"]");
-            System.out.println("La somme de dés vaut : " + sommeDes);
+            System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+ joueur.getCash()+"]");
+            System.out.println("La somme de dés vaut : " + "\033[34m" + sommeDes + "\033[0m");
             //System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             System.out.println("Destination : " + carreau.getNomCarreau());
             if (carreau.getNomCarreau().contains("Gare")) {
@@ -46,8 +54,8 @@ public class IHM {
             }
 	}
         
-        public boolean infoJoueur(Joueur joueur) {//TODO: Afficher la liste de ses proprietes, leurs couleurs en les triant par groupe
-            System.out.println("[Joueur = " + joueur.getNom()+"]" + " [Cash = "+joueur.getCash()+"]");
+        public boolean infoJoueur(Joueur joueur) {
+            System.out.println("[Joueur =" + joueur.getNom()+"]" + " [Cash = "+joueur.getCash());
             System.out.println("Carreau courant : " + joueur.getPositionCourante().getNomCarreau());
             
             return true;
@@ -90,26 +98,26 @@ public class IHM {
                
             }
             else if(res.getPrixPropriete() == -2) {
-                System.out.println("Vous ne pouvez pas acheter cette propriete");
+                System.out.println("\033[31mVous ne pouvez pas acheter cette propriété\033[0m");
             }
             else if (res.getPrixPropriete() != -1) {               
                 String rep = "";
                 while (!"o".equals(rep) && !"n".equals(rep) && rep != null) {
-                  System.out.println("Prix = " + res.getPrixPropriete() + " €, voulez-vous acheter cette proprieté ? (O/N) ");
+                  System.out.println("Prix = " + "\033[35m" + res.getPrixPropriete()  +" €\033[0m, voulez-vous acheter cette proprieté ? (O/N) ");
                     Scanner sc = new Scanner(System.in);
                     rep = sc.nextLine().toLowerCase();
                 }
 
                 if (rep.charAt(0) == 'o') {
                     System.out.println(j.getPositionCourante().getNomCarreau() + " achetée");
-                    System.out.println("\n \n \n");
+                    System.out.println("\n \n");
                     return 2;//On lance l'achat de la proprieté
                     } 
                 }
             else if (res.getProprietairePropriete() == j){
                 System.out.println("Vous êtes le proprietaire de cette case.");
             }
-            System.out.println("\n \n \n");
+            System.out.println("\n \n");
 
             return 0;
             
@@ -122,7 +130,7 @@ public class IHM {
         }
         public void gagne(Joueur joueur) {
             System.out.println("\033[1m-----------------------------------\033[0m");
-            System.out.println("Fin de la partie, "+ joueur.getNom() + " a remporter la victoire");
+            System.out.println("Fin de la partie, "+ joueur.getNom() + " a remporté la victoire");
             System.out.println("\033[1m-----------------------------------\033[0m");
         }
 }
