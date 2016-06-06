@@ -1,21 +1,22 @@
 package Ui;
 
-import Jeu.Monopoly;
-import Jeu.Joueur;
 import Jeu.Carreau;
-import Jeu.Propriete;
+import Jeu.Joueur;
+import Jeu.Monopoly;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
+        public IhmInscription ihmI;
 
     public Controleur() {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
-        
+        this.ihmI = new IhmInscription();
+        ihmI.afficher();
+
         this.initPartie();
     }
         

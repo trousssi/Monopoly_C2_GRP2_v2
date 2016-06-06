@@ -1,7 +1,7 @@
 package Ui;
 
-import Jeu.Joueur;
 import Jeu.Carreau;
+import Jeu.Joueur;
 import Jeu.Resultat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class IHM {
         this.controleur = controleur;
     }
 
-    
+        
         public ArrayList<String> debutPartie () {
             ArrayList<String> joueurs = new ArrayList<>();
             System.out.println("Combien de joueurs participent ? (Entre 2 et 6)");
