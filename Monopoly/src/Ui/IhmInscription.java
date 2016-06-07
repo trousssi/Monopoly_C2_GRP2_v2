@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ import javax.swing.JTextField;
  *
  * @author fallm
  */
-public class IhmInscription extends JFrame implements ActionListener {
+public class IhmInscription extends JFrame  {
     int nbjoueurs = 2;
     JPanel inscriptions;
     JPanel gestionJoueurs;
@@ -30,6 +31,16 @@ public class IhmInscription extends JFrame implements ActionListener {
     JLabel joueur4; JTextField champJ4;
     JLabel joueur5; JTextField champJ5;
     JLabel joueur6; JTextField champJ6;
+    String nomJ1;
+    String nomJ2;
+    String nomJ3;
+    String nomJ4;
+    String nomJ5;
+    String nomJ6;
+    ArrayList<String> joueurs = new ArrayList<>();
+    
+    
+    
     
     public IhmInscription() {
         super();
@@ -102,7 +113,7 @@ public class IhmInscription extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 boolean res = IhmBoiteMessage.afficherBoiteDialogue("Etes vous sûr de vouloir quitter?", "ouinon");
                 if (res) {
-                    //Quitter
+                    quitter();
                 }
             }
         });
@@ -111,7 +122,8 @@ public class IhmInscription extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 boolean res = IhmBoiteMessage.afficherBoiteDialogue("Souhaitez vous lancer la partie avec " + nbjoueurs + " joueurs ?", "ouinon");
                 if (res) {
-                    //Quitter
+                    joueurs = jouer();
+                    setVisible(false);
                 }
             }
         });
@@ -119,9 +131,7 @@ public class IhmInscription extends JFrame implements ActionListener {
     
     public void addJoueur() {
         if (nbjoueurs<6) {nbjoueurs++;}
-        traceInscriptions();
-
-        
+        traceInscriptions();  
     }
     
     public void removeJoueur() {
@@ -158,7 +168,6 @@ public class IhmInscription extends JFrame implements ActionListener {
         }
     }
     
-    
     /**
      * Rend visible la fenetre
      */
@@ -167,19 +176,40 @@ public class IhmInscription extends JFrame implements ActionListener {
         setSize(500, 400);
         setVisible(true);                        
     }
+
+    public void quitter() {
+        
+    }
+    
+    public ArrayList<String> jouer() {  
+        ArrayList<String> res = new ArrayList<>();
+        //On récupère les données des champs textes
+        nomJ1 = champJ1.getText();
+        nomJ2 = champJ2.getText();
+        nomJ3 = champJ3.getText();
+        nomJ4 = champJ4.getText();
+        nomJ5 = champJ5.getText();
+        nomJ6 = champJ6.getText();
+        
+        //On place les données dans l'ArrayList en fonction du nombre de joueurs
+        res.add(nomJ1);
+        res.add(nomJ2);
+        if (nbjoueurs>2) {res.add(nomJ3);
+            if (nbjoueurs>3) {res.add(nomJ4);
+                if (nbjoueurs>4) {res.add(nomJ5);
+                    if (nbjoueurs==6) {res.add(nomJ6);}
+                }      
+            } 
+        }
+        return res;
+    }
+
+   
     
 
-    /*public void displayInscription() {
-
-    }*/
-
-    public void majInscriptionDepuisIhm() {
-
+    public ArrayList<String> getJoueurs() {
+        return joueurs;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    
 }

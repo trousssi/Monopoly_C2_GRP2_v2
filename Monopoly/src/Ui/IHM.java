@@ -8,15 +8,19 @@ import java.util.Scanner;
 
 public class IHM {
 	public Controleur controleur;
+        public IhmInscription ihmI;
+        public IhmJeu ihmJeu;
 
     public IHM(Controleur controleur) {
         this.controleur = controleur;
     }
 
-        
-        public ArrayList<String> debutPartie () {
+        public ArrayList<String> debutPartie () throws InterruptedException {
+            this.ihmJeu = new IhmJeu();
+            this.ihmI = new IhmInscription();
+            ihmI.afficher();
             ArrayList<String> joueurs = new ArrayList<>();
-            System.out.println("Combien de joueurs participent ? (Entre 2 et 6)");
+           /* System.out.println("Combien de joueurs participent ? (Entre 2 et 6)");
             Scanner sc = new Scanner(System.in);
             int i =0;
             try {
@@ -37,8 +41,14 @@ public class IHM {
             } else {
                 System.out.println("\033[31mErreur, entrez un nombre de joueurs entre 2 et 6 inclus\033[0m");
                 return joueurs;
+            }*/
+  
+            while (joueurs.isEmpty()) {
+                joueurs = ihmI.getJoueurs();
+                Thread.sleep(1); // ne marche pas sans, pour une raison obscure
             }
-
+            
+            return joueurs;
         }
     
     

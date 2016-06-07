@@ -9,13 +9,10 @@ import java.util.Random;
 public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
-        public IhmInscription ihmI;
 
-    public Controleur() {
+    public Controleur() throws InterruptedException {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
-        this.ihmI = new IhmInscription();
-        ihmI.afficher();
 
         this.initPartie();
     }
@@ -23,30 +20,28 @@ public class Controleur {
         public static final Random RANDOM = new Random();
         
 	public void jouerUnCoup(Joueur joueur) {
-		Carreau car;
-                car = lancerDésAvancer(joueur);
+            Carreau car;
+            car = lancerDésAvancer(joueur);
                
 	}
         
-        public void initPartie () {
+        public void initPartie () throws InterruptedException  {
             ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
-            while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
-                joueurs = ihm.debutPartie();
+            if (joueurs!=null){
+                while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
+                    joueurs = ihm.debutPartie();
+                }
+                for (String nom : joueurs) {
+                    Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
+                    monopoly.addJoueur(joueur);
+                }
             }
-            for (String nom : joueurs) {
-                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
-                monopoly.addJoueur(joueur);
-            }
-            
             this.lancePartie();
         }
         
         public static int lancerDes() {
             return RANDOM.nextInt(6)+1;
-            /*            System.out.println("Lancer dé"); //Juste pour démo
-            Scanner sc = new Scanner(System.in);
-            int des = sc.nextInt();*/            
-        /*            return des;*/        }
+        }
         
 	private Carreau lancerDésAvancer(Joueur j) {
             int resDes1 = lancerDes();
@@ -60,8 +55,8 @@ public class Controleur {
                 resDes1 = lancerDes();
                 resDes2 = lancerDes();
                 sommeDes = resDes1+resDes2;
-
             }
+            
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       //Affiche les infos types : nomJoueur, cash, carreau ...
             Jeu.Resultat res = carreau.action(j,sommeDes);
