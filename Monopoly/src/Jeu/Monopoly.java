@@ -6,14 +6,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Monopoly {
     private HashMap<Integer, Carreau> carreaux = new HashMap<>();
     private HashMap<String, Groupe> groupes = new HashMap<>();
+    private HashSet<Carte> cartesChance = new HashSet<>();
+    private HashSet<Carte> cartesCommu = new HashSet<>();
     private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
     public Monopoly() {
         this.buildGamePlateau("src/Data/data.txt");
+        this.buildCartes("src/Data/cartes.txt");
     }
 
     public ArrayList<Joueur> getJoueurs() {
@@ -113,6 +117,84 @@ public class Monopoly {
         catch(IOException e){
             System.err.println("[buildGamePlateau()] : Error while reading file!");
         }
+    }
+
+    
+    private void buildCartes(String dataFilename)
+    {
+            try{
+                    ArrayList<String[]> data = readDataFile(dataFilename, ",");
+
+                    //TODO: create cases instead of displaying
+                    for(int i=0; i<data.size()/2; ++i){
+                            String caseType = data.get(i)[0];
+                            if(caseType.compareTo("LI") == 0){
+                                    Carte li = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesChance.add(li);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("DE") == 0){
+                                    Carte de = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesChance.add(de);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("RE") == 0){
+                                    Carte re = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesChance.add(re);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("AR") == 0){
+                                    Carte ar = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesChance.add(ar);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("PR") == 0){
+                                    Carte pr = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesChance.add(pr);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else
+                                    System.err.println("[buildGamePleateau()] : Invalid Data type");
+                    }
+                    for(int i=16; i<data.size(); ++i){
+                            String caseType = data.get(i)[0];
+                            if(caseType.compareTo("LI") == 0){
+                                    Carte li = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesCommu.add(li);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("DE") == 0){
+                                    Carte de = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesCommu.add(de);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("RE") == 0){
+                                    Carte re = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesCommu.add(re);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("AR") == 0){
+                                    Carte ar = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesCommu.add(ar);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else if(caseType.compareTo("PR") == 0){
+                                    Carte pr = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
+                                    cartesCommu.add(pr);
+                                    //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
+                            }
+                            else
+                                    System.err.println("[buildGamePleateau()] : Invalid Data type");
+                    }
+
+
+            } 
+            catch(FileNotFoundException e){
+                    System.err.println("[buildGamePlateau()] : File is not found!");
+            }
+            catch(IOException e){
+                    System.err.println("[buildGamePlateau()] : Error while reading file!");
+            }
     }
 
     private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
