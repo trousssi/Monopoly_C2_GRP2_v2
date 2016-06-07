@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,23 +22,24 @@ import javax.swing.JTextField;
  * @author fallm
  */
 public class IhmInscription extends JFrame  {
-    int nbjoueurs = 2;
-    JPanel inscriptions;
-    JPanel gestionJoueurs;
-    JPanel choix;
-    JLabel joueur1; JTextField champJ1;
-    JLabel joueur2; JTextField champJ2;
-    JLabel joueur3; JTextField champJ3;
-    JLabel joueur4; JTextField champJ4;
-    JLabel joueur5; JTextField champJ5;
-    JLabel joueur6; JTextField champJ6;
-    String nomJ1;
-    String nomJ2;
-    String nomJ3;
-    String nomJ4;
-    String nomJ5;
-    String nomJ6;
-    ArrayList<String> joueurs = new ArrayList<>();
+    private int nbjoueurs = 2;
+    private JPanel inscriptions;
+    private JPanel gestionJoueurs;
+    private JPanel choix;
+    private JLabel joueur1; private JTextField champJ1;
+    private JLabel joueur2; private JTextField champJ2;
+    private JLabel joueur3; private JTextField champJ3;
+    private JLabel joueur4; private JTextField champJ4;
+    private JLabel joueur5; private JTextField champJ5;
+    private JLabel joueur6; private JTextField champJ6;
+    private String nomJ1;
+    private String nomJ2;
+    private String nomJ3;
+    private String nomJ4;
+    private String nomJ5;
+    private String nomJ6;
+    private ArrayList<String> joueurs = new ArrayList<>();
+    private IhmJeu ihmJeu;
     
     
     
@@ -124,6 +126,7 @@ public class IhmInscription extends JFrame  {
                 if (res) {
                     joueurs = jouer();
                     setVisible(false);
+                    ihmJeu = new IhmJeu();
                 }
             }
         });
@@ -178,7 +181,8 @@ public class IhmInscription extends JFrame  {
     }
 
     public void quitter() {
-        
+        boolean res = IhmBoiteMessage.afficherBoiteDialogue("A bientôt", "info");
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));//Permet de fermer la fenêtre
     }
     
     public ArrayList<String> jouer() {  

@@ -14,15 +14,15 @@ import javax.swing.JOptionPane;
 public class IhmBoiteMessage {
     
     public static boolean afficherBoiteDialogue(String message, String mode) {
-        int response = 0;
+        int response = 1;
         switch(mode) {
-            case "info": JOptionPane.showConfirmDialog(null, message, "Information", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                response = 1; break;
-            case "ouinon": JOptionPane.showConfirmDialog(null, message, "Veuillez confirmer l'opération", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                response = JOptionPane.YES_OPTION; break;
+            case "info": response = JOptionPane.showConfirmDialog(null, message, "Information", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case "ouinon": response = JOptionPane.showConfirmDialog(null, message, "Veuillez confirmer l'opération", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                break;
                 
         }
-        return response == JOptionPane.YES_OPTION;
+        return response == 0;
     }
     
 }

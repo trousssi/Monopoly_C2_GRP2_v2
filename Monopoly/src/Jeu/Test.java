@@ -5,6 +5,7 @@
  */
 package Jeu;
 
+import Ui.IhmJeu;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,6 +21,8 @@ public class Test {
     
     public static void main(String[] args) {
         buildGamePlateau("src/Data/data.txt");
+        IhmJeu jeu = new IhmJeu();
+        
     }
     
     private static void buildGamePlateau(String dataFilename)
