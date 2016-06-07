@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class IHM {
 	public Controleur controleur;
         public IhmInscription ihmI;
+        public IhmJeu ihmJeu;
 
     public IHM(Controleur controleur) {
         this.controleur = controleur;
@@ -16,7 +17,7 @@ public class IHM {
 
         
         public ArrayList<String> debutPartie () throws InterruptedException {
-            
+            this.ihmJeu = new IhmJeu();
             this.ihmI = new IhmInscription();
             ihmI.afficher();
             ArrayList<String> joueurs = new ArrayList<>();
