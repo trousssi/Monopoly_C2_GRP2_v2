@@ -14,7 +14,6 @@ public class IHM {
         this.controleur = controleur;
     }
 
-        
         public ArrayList<String> debutPartie () throws InterruptedException {
             
             this.ihmI = new IhmInscription();
@@ -42,8 +41,6 @@ public class IHM {
                 System.out.println("\033[31mErreur, entrez un nombre de joueurs entre 2 et 6 inclus\033[0m");
                 return joueurs;
             }*/
-               
-           
   
             while (joueurs.isEmpty()) {
                 joueurs = ihmI.getJoueurs();

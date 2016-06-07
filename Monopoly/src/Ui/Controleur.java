@@ -10,7 +10,7 @@ public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
 
-    public Controleur() {
+    public Controleur() throws InterruptedException {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
 
@@ -20,12 +20,12 @@ public class Controleur {
         public static final Random RANDOM = new Random();
         
 	public void jouerUnCoup(Joueur joueur) {
-		Carreau car;
-                car = lancerDésAvancer(joueur);
+            Carreau car;
+            car = lancerDésAvancer(joueur);
                
 	}
         
-        public void initPartie () {
+        public void initPartie () throws InterruptedException  {
             ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
             if (joueurs!=null){
                 while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
@@ -41,10 +41,7 @@ public class Controleur {
         
         public static int lancerDes() {
             return RANDOM.nextInt(6)+1;
-            /*            System.out.println("Lancer dé"); //Juste pour démo
-            Scanner sc = new Scanner(System.in);
-            int des = sc.nextInt();*/            
-        /*            return des;*/        }
+        }
         
 	private Carreau lancerDésAvancer(Joueur j) {
             int resDes1 = lancerDes();
