@@ -55,8 +55,8 @@ public class Controleur {
                 resDes1 = lancerDes();
                 resDes2 = lancerDes();
                 sommeDes = resDes1+resDes2;
-
             }
+            
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       //Affiche les infos types : nomJoueur, cash, carreau ...
             Jeu.Resultat res = carreau.action(j,sommeDes);
