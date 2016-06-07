@@ -14,7 +14,7 @@ public abstract class Propriete extends Carreau {
 
 
         @Override
-	public Resultat action(Joueur j, int sommeDe) {
+	public Resultat action(Joueur j, int sommeDe, Carte[] cartes) {
             // Resultat res = new Resultat();
             Joueur jProprio;
             //int l; //loyer --> voir résultat
@@ -22,8 +22,8 @@ public abstract class Propriete extends Carreau {
             if (jProprio!=null) { //Il y a un propriétaire
                 if (j!=jProprio) { //S'il n'est pas propriétaire
                     Resultat res = calculLoyer(sommeDe);
-                    j.payerLoyer(res.getLoyerPropriete()); //Il doit forcément payer le loyer
-                    jProprio.recevoirLoyer(res.getLoyerPropriete());
+                    j.payer(res.getLoyerPropriete()); //Il doit forcément payer le loyer
+                    jProprio.crediter(res.getLoyerPropriete());
                     res.setProprietairePropriete(jProprio);
                     return res;
                 }

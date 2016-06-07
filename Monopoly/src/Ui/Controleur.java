@@ -1,6 +1,7 @@
 package Ui;
 
 import Jeu.Carreau;
+import Jeu.Carte;
 import Jeu.Joueur;
 import Jeu.Monopoly;
 import java.util.ArrayList;
@@ -50,28 +51,28 @@ public class Controleur {
             if (resDes1 == resDes2) { 
                 Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
                 ihm.messageJoueurAvance(j, sommeDes, carreau, true);       
-                Jeu.Resultat res = carreau.action(j,sommeDes);
-                this.action(ihm.action(res, j), j, res);
+                Jeu.Resultat res = carreau.action(j,sommeDes, monopoly.pickCartes());
+                this.action(ihm.action(res, j), j, res, monopoly.pickCartes());
                 resDes1 = lancerDes();
                 resDes2 = lancerDes();
                 sommeDes = resDes1+resDes2;
             }
             Carreau carreau = monopoly.avancerJoueur(j, sommeDes);
             ihm.messageJoueurAvance(j, sommeDes, carreau, false);       //Affiche les infos types : nomJoueur, cash, carreau ...
-            Jeu.Resultat res = carreau.action(j,sommeDes);
+            Jeu.Resultat res = carreau.action(j,sommeDes, monopoly.pickCartes());
             //ihm.action(res, j);
-            this.action(ihm.action(res, j), j, res); //L'ihm action envoie le cas dans lequel on se trouve sous forme d'entier
+            this.action(ihm.action(res, j), j, res, monopoly.pickCartes()); //L'ihm action envoie le cas dans lequel on se trouve sous forme d'entier
             return carreau;
 	}
         
-        private void action (int cas, Joueur j, Jeu.Resultat res) { // Selon le cas, on gère les actions à faire
+        private void action (int cas, Joueur j, Jeu.Resultat res, Carte[] cartes) { // Selon le cas, on gère les actions à faire
             switch (cas) {
                 case 0:
                     //Il ne se passe rien
                 break;
                 case 2:
                     //On veut acheter une propriete et on peut le faire
-                    j.payerLoyer(res.getPrixPropriete());
+                    j.payer(res.getPrixPropriete());
                     res.getProprieteAchete().setProprietaire(j);
                 break;
                     

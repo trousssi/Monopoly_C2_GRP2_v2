@@ -6,21 +6,28 @@ public class Joueur {
 	private String nomJoueur;
 	private int cash = 1500;
         private Carreau positionCourante;
-	public HashSet<Gare> gares = new HashSet<Gare>();
-        public HashSet<Compagnie> compagnies = new HashSet<Compagnie>();
-        public HashSet<ProprieteAConstruire> proprietesAconstruire = new HashSet<ProprieteAConstruire>();
+        private int enPrison = -1;
+        private HashSet<Carte> cartesPrison;
+	public HashSet<Gare> gares;
+        public HashSet<Compagnie> compagnies;
+        public HashSet<ProprieteAConstruire> proprietesAconstruire;
+        
 
         public Joueur(String nomJoueur, Carreau positionCourante) {
             this.nomJoueur = nomJoueur;
             this.positionCourante = positionCourante;
+            this.gares = new HashSet<Gare>();
+            this.compagnies = new HashSet<Compagnie>();
+            this.proprietesAconstruire = new HashSet<ProprieteAConstruire>();
+            this.cartesPrison = new HashSet<Carte>();
         }
 
         
-	public void payerLoyer(int aL) {
+	public void payer(int aL) {
             cash-=aL; // Le joueur paye le loyer de la propriété sur laquelle son pion est tombé.
 	}
 
-	public void recevoirLoyer(int aL) {
+	public void crediter(int aL) {
             cash+=aL; //Le joueur reçois le loyer de sa propriété lorsqu'un joueur adverse a son pion qui est tombé dessus.
 	}
 
@@ -43,6 +50,10 @@ public class Joueur {
 	public int getNbGare() { // Retourne le nombre de gares que possède le joueur.
             return this.getGares().size();
 	}
+        
+        public void addCartePrison (Carte carte) {
+            this.cartesPrison.add(carte);
+        }
         
         public void addGare(Gare gare) { // Ajoute une gare à la liste de gares que possède le joueur
             if (gare.getProprietaire() != null) {

@@ -60,7 +60,7 @@ public class Monopoly {
         boolean possede = false;
         Carte chance = null;
         Carte communaute = null;
-        while (!possede) {
+        while (possede) {
             chance = cartesChance.get((int) (Math.random()*16));
             communaute = cartesCommu.get((int) ((Math.random()*16)+16));
             possede = chance.isPossede();
