@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 /**
  *
@@ -21,17 +22,17 @@ public class IhmPlateau extends JPanel{
     private BufferedImage pion;
     
     public IhmPlateau() {
+        this.setLayout(new OverlayLayout(this));
+        this.add(new JLabel(new ImageIcon("src/Data/robot_monopoly.jpg")));
         
         
-        /*this.add(new JLabel(new ImageIcon("src/Data/plateau.jpg")));//robot_monopoly.jpg
-        this.add(new JLabel(new ImageIcon("src/Data/robot_monopoly.jpg")));*/
-        //this.setLayout(new OverlayLayout(this));
         
-     
+        this.add(new JLabel(new ImageIcon("src/Data/plateau.jpg"))); // Plateau de jeu à mettre à la fin 
+ 
         setPreferredSize(new Dimension(700, 570));
         this.setVisible(true);
-        this.dessinerImage(0, 0, "src/Data/plateau.jpg");
-        this.dessinerImage(120, 400, "src/Data/robot_monopoly.jpg");
+        /*this.dessinerImage(0, 0, "src/Data/plateau.jpg");
+        this.dessinerImage(120, 400, "src/Data/robot_monopoly.jpg");*/
 
     }
     
