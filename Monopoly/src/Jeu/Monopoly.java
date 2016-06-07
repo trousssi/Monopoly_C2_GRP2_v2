@@ -11,15 +11,15 @@ import java.util.HashSet;
 public class Monopoly {
     private HashMap<Integer, Carreau> carreaux = new HashMap<>();
     private HashMap<String, Groupe> groupes = new HashMap<>();
-    private HashSet<Carte> cartesChance = new HashSet<>();
-    private HashSet<Carte> cartesCommu = new HashSet<>();
+    private HashMap<Integer, Carte> cartesChance = new HashMap<>();
+    private HashMap<Integer, Carte> cartesCommu = new HashMap<>();
     private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
     public Monopoly() {
         this.buildGamePlateau("src/Data/data.txt");
         this.buildCartes("src/Data/cartes.txt");
     }
-
+    
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
     }
@@ -56,6 +56,19 @@ public class Monopoly {
         joueur = null;
     }
 
+    public Carte[] pickCartes () {
+        boolean possede = false;
+        Carte chance = null;
+        Carte communaute = null;
+        while (!possede) {
+            chance = cartesChance.get((int) (Math.random()*16));
+            communaute = cartesCommu.get((int) ((Math.random()*16)+16));
+            possede = chance.isPossede();
+            if (!possede) possede = communaute.isPossede();
+        }
+        Carte[] cartes =  {chance, communaute};
+        return cartes;
+    }
     private void buildGamePlateau(String dataFilename)
     {
         // Création des groupes de propriétés.
@@ -104,6 +117,11 @@ public class Monopoly {
                     AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
                     carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
                 }
+                else if(caseType.compareTo("CA") == 0){ // Si la case est un Autre Carreau
+                    //System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    AutreCarreau autreCarr = new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2]);
+                    carreaux.put(Integer.parseInt(data.get(i)[1]), autreCarr);
+                }
                 else { // S'il y a une erreur de lecture dans le data.
                     //System.err.println("[buildGamePleateau()] : Invalid Data type");
                 }
@@ -130,27 +148,27 @@ public class Monopoly {
                             String caseType = data.get(i)[0];
                             if(caseType.compareTo("LI") == 0){
                                     Carte li = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesChance.add(li);
+                                    cartesChance.put(i, li);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("DE") == 0){
                                     Carte de = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesChance.add(de);
+                                    cartesChance.put(i, de);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("RE") == 0){
                                     Carte re = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesChance.add(re);
+                                    cartesChance.put(i, re);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("AR") == 0){
                                     Carte ar = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesChance.add(ar);
+                                    cartesChance.put(i, ar);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("PR") == 0){
                                     Carte pr = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesChance.add(pr);
+                                    cartesChance.put(i, pr);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else
@@ -160,27 +178,27 @@ public class Monopoly {
                             String caseType = data.get(i)[0];
                             if(caseType.compareTo("LI") == 0){
                                     Carte li = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesCommu.add(li);
+                                    cartesChance.put(i, li);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("DE") == 0){
                                     Carte de = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesCommu.add(de);
+                                    cartesChance.put(i, de);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("RE") == 0){
                                     Carte re = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesCommu.add(re);
+                                    cartesChance.put(i, re);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("AR") == 0){
                                     Carte ar = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesCommu.add(ar);
+                                    cartesChance.put(i, ar);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else if(caseType.compareTo("PR") == 0){
                                     Carte pr = new Carte(data.get(i)[0], data.get(i)[1], Integer.parseInt(data.get(i)[2]), Integer.parseInt(data.get(i)[3]));
-                                    cartesCommu.add(pr);
+                                    cartesChance.put(i, pr);
                                     //System.out.println(data.get(i)[1] + " prix " + data.get(i)[2] + " déplacement " + Integer.parseInt(data.get(i)[3]));
                             }
                             else
