@@ -21,7 +21,7 @@ public class Test {
     
     public static void main(String[] args) {
         buildCartes("src/Data/cartes.txt");
-        buildGamePlateau("src/Data/data.txt");
+        //buildGamePlateau("src/Data/data.txt");
         IhmJeu jeu = new IhmJeu();
         
     }
