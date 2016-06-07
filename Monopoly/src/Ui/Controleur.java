@@ -9,13 +9,10 @@ import java.util.Random;
 public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
-        public IhmInscription ihmI;
 
     public Controleur() {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
-        this.ihmI = new IhmInscription();
-        ihmI.afficher();
 
         this.initPartie();
     }
@@ -30,14 +27,15 @@ public class Controleur {
         
         public void initPartie () {
             ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
-            while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
-                joueurs = ihm.debutPartie();
+            if (joueurs!=null){
+                while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
+                    joueurs = ihm.debutPartie();
+                }
+                for (String nom : joueurs) {
+                    Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
+                    monopoly.addJoueur(joueur);
+                }
             }
-            for (String nom : joueurs) {
-                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
-                monopoly.addJoueur(joueur);
-            }
-            
             this.lancePartie();
         }
         
