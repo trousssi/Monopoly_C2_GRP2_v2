@@ -10,7 +10,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -126,7 +129,12 @@ public class IhmInscription extends JFrame  {
                 if (res) {
                     joueurs = jouer();
                     setVisible(false);
-                    ihmJeu = new IhmJeu();
+                    //On lance la fenêtre de jeu
+                    try { 
+                        ihmJeu = new IhmJeu();
+                    } catch (IOException ex) {
+                        Logger.getLogger(IhmInscription.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
@@ -176,7 +184,7 @@ public class IhmInscription extends JFrame  {
      */
     public void afficher() {
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        setSize(500, 400);
+        setSize(350, 250);
         setVisible(true);                        
     }
 

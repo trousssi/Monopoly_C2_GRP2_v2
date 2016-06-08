@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,10 +22,10 @@ import javax.swing.JPanel;
  * @author fallm
  */
 public class IhmJeu extends JFrame{
-    private IhmPlateau plateau; 
-    private JPanel controle;
+    private final IhmPlateau plateau; 
+    private final JPanel controle;
     
-    public IhmJeu() {        
+    public IhmJeu() throws IOException {        
         plateau = new IhmPlateau();
         controle = new JPanel();
         
@@ -92,6 +93,7 @@ public class IhmJeu extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //displayDes(de1, de2);
+                lanceDes.setEnabled(false);
             }
         });
         
