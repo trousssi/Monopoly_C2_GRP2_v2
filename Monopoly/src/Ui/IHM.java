@@ -141,4 +141,12 @@ public class IHM {
             System.out.println("Fin de la partie, "+ joueur.getNom() + " a remporté la victoire");
             System.out.println("\033[1m-----------------------------------\033[0m");
         }
+
+    void joueurEnPrison(Joueur j) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void messageCaseDepart(Joueur joueur) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
