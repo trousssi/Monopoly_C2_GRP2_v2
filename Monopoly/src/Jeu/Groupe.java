@@ -17,4 +17,14 @@ public class Groupe {
 	public int getNbPropriete() {
             return this.proprietes.size();
 	}
+
+    public int getMinMaison() {
+        int minMaison = 4;
+        for (ProprieteAConstruire p : this.proprietes) {
+            if (p.getNbMaison() <=  minMaison) {
+                minMaison = p.getNbMaison();
+            }
+        }
+        return minMaison;
+    }
 }

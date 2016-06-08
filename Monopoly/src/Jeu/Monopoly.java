@@ -14,10 +14,15 @@ public class Monopoly {
     private HashMap<Integer, Carte> cartesChance = new HashMap<>();
     private HashMap<Integer, Carte> cartesCommu = new HashMap<>();
     private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
-
+    private int Maison;
+    private int Hotel;
+    
+    
     public Monopoly() {
         this.buildGamePlateau("src/Data/data.txt");
         this.buildCartes("src/Data/cartes.txt");
+        this.Maison = 32;
+        this.Hotel = 12;
     }
     
     public ArrayList<Joueur> getJoueurs() {
@@ -227,5 +232,9 @@ public class Monopoly {
         reader.close();
 
         return data;
+    }
+    
+     public boolean resteMaison() {
+        return !(Maison == 0);
     }
 }
