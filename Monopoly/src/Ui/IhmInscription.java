@@ -25,6 +25,8 @@ import javax.swing.JTextField;
  * @author fallm
  */
 public class IhmInscription extends JFrame  {
+    private Observateur observateur;
+    
     private int nbjoueurs = 2;
     private JPanel inscriptions;
     private JPanel gestionJoueurs;
@@ -51,6 +53,10 @@ public class IhmInscription extends JFrame  {
         super();
 
         initUIComponents();
+    }
+    
+     public void setObservateur(Observateur observateur) {
+        this.observateur = observateur;
     }
     
     private void initUIComponents() {
@@ -130,11 +136,8 @@ public class IhmInscription extends JFrame  {
                     joueurs = jouer();
                     setVisible(false);
                     //On lance la fenêtre de jeu
-                    try { 
-                        ihmJeu = new IhmJeu();
-                    } catch (IOException ex) {
-                        Logger.getLogger(IhmInscription.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                     ihmJeu = new IhmJeu(); // A ENLEVER D'ICI 
+                    observateur.jouer(joueurs);
                 }
             }
         });
