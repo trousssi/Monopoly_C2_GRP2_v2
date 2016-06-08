@@ -25,7 +25,7 @@ public class IhmJeu extends JFrame{
     private final IhmPlateau plateau; 
     private final JPanel controle;
     
-    public IhmJeu() throws IOException {        
+    public IhmJeu()  {        
         plateau = new IhmPlateau();
         controle = new JPanel();
         

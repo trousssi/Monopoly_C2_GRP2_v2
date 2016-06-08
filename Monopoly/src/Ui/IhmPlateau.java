@@ -26,7 +26,7 @@ public class IhmPlateau extends JPanel{
     private BufferedImage pionJ4;
     private BufferedImage pionJ5;
     private BufferedImage pionJ6;*/
-    public IhmPlateau() throws IOException {
+    public IhmPlateau()  {
         this.setLayout(new OverlayLayout(this));
         
         /*pionJ1 = ImageIO.read(new File("src/Data/pionViolet.png"));
