@@ -2,8 +2,10 @@ package Ui;
 
 import Jeu.Carreau;
 import Jeu.Carte;
+import Jeu.Groupe;
 import Jeu.Joueur;
 import Jeu.Monopoly;
+import Jeu.ProprieteAConstruire;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -79,6 +81,25 @@ public class Controleur {
                     
             }
         }
+        
+        public String construire(ProprieteAConstruire p, Joueur j) {
+        if (p.getNbHotel() == 0) { // si il n'y a pas déjà d'hotel sur la case on peut contruire
+            Groupe gr = p.getGroupe();
+            if  (p.possedeToutesPropGroupe(j)) { // si le joueur possede toute les propriétés du goupe de la propriété on peut construire
+                int minMaison = gr.getMinMaison(); // retourne le nb minimum de maison sur les propriété du groupe
+                int nbMaison = p.getNbMaison();
+                if (minMaison == nbMaison) {  // si la propriété posséde le nombre minimal de maison on peut contruire
+                    if (minMaison == 4) { // si le nombre minimal de maison est égal à 4 alors on construit un 
+                        
+                    }
+                }
+            }
+        }
+
+        //if (this.monopoly.resteMaison()) {
+            
+        //}
+    }
         
         private void lancePartie() { //Contient la boucle principale pour le lancement de la partie
             boolean continuer = true;
