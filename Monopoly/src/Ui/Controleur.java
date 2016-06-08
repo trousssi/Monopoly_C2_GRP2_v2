@@ -11,7 +11,7 @@ public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
 
-    public Controleur() throws InterruptedException {
+    public Controleur() {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
 
