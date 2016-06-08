@@ -28,7 +28,7 @@ public class Controleur {
                
 	}
         
-        public void initPartie ( ArrayList<String> joueurs)  {
+        public void initPartie (ArrayList<String> joueurs)  {
             //ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
             if (joueurs!=null){
                 //while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
