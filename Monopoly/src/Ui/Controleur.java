@@ -15,7 +15,7 @@ public class Controleur {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
 
-        this.initPartie();
+         ihm.debutPartie();
     }
         
         public static final Random RANDOM = new Random();
@@ -26,17 +26,18 @@ public class Controleur {
                
 	}
         
-        public void initPartie () throws InterruptedException  {
-            ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
+        public void initPartie ( ArrayList<String> joueurs)  {
+            //ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
             if (joueurs!=null){
-                while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
-                    joueurs = ihm.debutPartie();
-                }
+                //while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
+                //    joueurs = ihm.debutPartie();
+                //}
                 for (String nom : joueurs) {
                     Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
                     monopoly.addJoueur(joueur);
                 }
             }
+            
             this.lancePartie();
         }
         
