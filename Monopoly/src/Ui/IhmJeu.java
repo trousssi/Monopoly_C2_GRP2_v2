@@ -11,7 +11,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,7 +31,6 @@ public class IhmJeu extends JFrame{
         this.setLayout(new BorderLayout());
         this.add(plateau, BorderLayout.CENTER);
         
-        //this.add(new JLabel(new ImageIcon("src/Data/robot_monopoly.jpg")), BorderLayout.CENTER);
         this.add(this.controle(), BorderLayout.EAST);
         
         afficher();
