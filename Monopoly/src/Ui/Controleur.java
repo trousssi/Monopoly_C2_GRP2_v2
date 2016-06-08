@@ -2,8 +2,10 @@ package Ui;
 
 import Jeu.Carreau;
 import Jeu.Carte;
+import Jeu.Groupe;
 import Jeu.Joueur;
 import Jeu.Monopoly;
+import Jeu.ProprieteAConstruire;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,30 +13,31 @@ public class Controleur {
 	public IHM ihm;
 	public Monopoly monopoly;
 
-    public Controleur() throws InterruptedException {
+    public Controleur() {
         this.ihm = new IHM(this);
         this.monopoly = new Monopoly();
 
          ihm.debutPartie();
     }
         
-    public static final Random RANDOM = new Random();
-
-    public void jouerUnCoup(Joueur joueur) {
-        Carreau car;
-        car = lancerDésAvancer(joueur);
-
-    }
-
-    public void initPartie ( ArrayList<String> joueurs)  {
-        //ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
-        if (joueurs!=null){
-            //while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
-            //    joueurs = ihm.debutPartie();
-            //}
-            for (String nom : joueurs) {
-                Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
-                monopoly.addJoueur(joueur);
+        public static final Random RANDOM = new Random();
+        
+	public void jouerUnCoup(Joueur joueur) {
+            Carreau car;
+            car = lancerDésAvancer(joueur);
+               
+	}
+        
+        public void initPartie (ArrayList<String> joueurs)  {
+            //ArrayList<String> joueurs = ihm.debutPartie(); //On renvoie le nom des joueurs
+            if (joueurs!=null){
+                //while (joueurs.size() < 2 || joueurs.size() > 6) {//On ne prend que des valeurs appartenat à l'intervalle [2; 6]
+                //    joueurs = ihm.debutPartie();
+                //}
+                for (String nom : joueurs) {
+                    Joueur joueur = new Joueur(nom, monopoly.getCarreau(1)); //On ajoute les joueurs sur la première case du plateau
+                    monopoly.addJoueur(joueur);
+                }
             }
         }
 
@@ -65,8 +68,38 @@ public class Controleur {
                 nbDouble++;
             }
         }
-        return carreau;
+        
+        public String construire(ProprieteAConstruire p, Joueur j) {
+        if (p.getNbHotel() == 0) { // si il n'y a pas déjà d'hotel sur la case on peut contruire
+            Groupe gr = p.getGroupe();
+            if  (p.possedeToutesPropGroupe(j)) { // si le joueur possede toute les propriétés du goupe de la propriété on peut construire
+                int minMaison = gr.getMinMaison(); // retourne le nb minimum de maison sur les propriété du groupe
+                int nbMaison = p.getNbMaison();
+                if (minMaison == nbMaison) {  // si la propriété posséde le nombre minimal de maison on peut contruire
+                    if (minMaison == 4) { // si le nombre minimal de maison est égal à 4 alors on construit un 
+                        
+                    }
+                }
+            }
+        }
+
+        //if (this.monopoly.resteMaison()) {
+            
+        //}
     }
+        
+        private void lancePartie() { //Contient la boucle principale pour le lancement de la partie
+            boolean continuer = true;
+            int i = 0; 
+            int nbTour = 0;
+                       
+            do {
+                if (i==monopoly.getJoueurs().size() || i == 0) {  //Si on a fait le tour on recommence et on passe au prochain tour.
+                    i=0;
+                    nbTour++;
+                    if (!ihm.debutTour(monopoly.getJoueurs(), nbTour)) { //On doit pouvoir s'arreter
+                        continuer = false;
+                    }
 
     private void action (int cas, Joueur j, Jeu.Resultat res) { // Selon le cas, on gère les actions à faire
         if (res.getCarte() != null) {actionCarte(j, res.getCarte());}       

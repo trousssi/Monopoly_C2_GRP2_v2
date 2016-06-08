@@ -6,7 +6,7 @@ import Jeu.Resultat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class IHM {
+public class IHM implements Observateur{
 	public Controleur controleur;
         public IhmInscription ihmI;
 
@@ -14,10 +14,11 @@ public class IHM {
         this.controleur = controleur;
     }
 
-        public ArrayList<String> debutPartie () throws InterruptedException {
+       public void debutPartie () {
             this.ihmI = new IhmInscription();
             ihmI.afficher();
-            ArrayList<String> joueurs = new ArrayList<>();
+            ihmI.setObservateur(this);
+            //ArrayList<String> joueurs = new ArrayList<>();
            /* System.out.println("Combien de joueurs participent ? (Entre 2 et 6)");
             Scanner sc = new Scanner(System.in);
             int i =0;
@@ -41,12 +42,12 @@ public class IHM {
                 return joueurs;
             }*/
   
-            while (joueurs.isEmpty()) {
-                joueurs = ihmI.getJoueurs();
-                Thread.sleep(1); // ne marche pas sans, pour une raison obscure
-            }
+           /* while (joueurs.isEmpty()) {
+           joueurs = ihmI.getJoueurs();
+           Thread.sleep(1); // ne marche pas sans, pour une raison obscure
+           }*/
             
-            return joueurs;
+            
         }
     
     
@@ -140,6 +141,10 @@ public class IHM {
             System.out.println("\033[1m-----------------------------------\033[0m");
             System.out.println("Fin de la partie, "+ joueur.getNom() + " a remporté la victoire");
             System.out.println("\033[1m-----------------------------------\033[0m");
+        }
+        
+         public void jouer(ArrayList<String> joueurs) {
+            this.controleur.initPartie(joueurs);
         }
 
     void joueurEnPrison(Joueur j) {

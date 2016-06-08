@@ -11,7 +11,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,15 +23,18 @@ import javax.swing.JPanel;
 public class IhmJeu extends JFrame{
     private final IhmPlateau plateau; 
     private final JPanel controle;
+    private JLabel nomJoueur;
+    private JLabel cash;
+    private JLabel nomCarte;
+    private JButton acheter;
     
-    public IhmJeu() throws IOException {        
+    public IhmJeu()  {        
         plateau = new IhmPlateau();
         controle = new JPanel();
         
         this.setLayout(new BorderLayout());
         this.add(plateau, BorderLayout.CENTER);
         
-        //this.add(new JLabel(new ImageIcon("src/Data/robot_monopoly.jpg")), BorderLayout.CENTER);
         this.add(this.controle(), BorderLayout.EAST);
         
         afficher();
@@ -45,34 +47,42 @@ public class IhmJeu extends JFrame{
         
         return this.controle;
     }
+    private void initJoueur() {
+        nomJoueur = new JLabel();
+        nomCarte = new JLabel();
+        cash = new JLabel();
+        acheter = new JButton();
+        this.controle.add(nomJoueur);       
+        this.controle.add(cash);        
+        this.controle.add(nomCarte);
+        this.controle.add(acheter);
+    }
+    
     
     //Affichera toutes les infos du joueur
     private void displayJoueur(Joueur j, Resultat res) {
-        this.controle.add(new JLabel("A votre tour " + j.getNom()));
+        this.nomJoueur.setText("A votre tour " + j.getNom());
         
-        this.controle.add(new JLabel("Cash : " + j.getCash()));
-        this.controle.add(new JLabel("Case : " + j.getPositionCourante().getNomCarreau()));
+        this.nomJoueur.setText("Cash : " + j.getCash());
+        this.nomJoueur.setText("Case : " + j.getPositionCourante().getNomCarreau());
         
-        
-        JButton acheter = new JButton("Acheter cette propriéte.");
-        this.controle.add(acheter);
         if(res.getNomCarreau() != null && res.getProprietairePropriete() == null) {
             acheter.setEnabled(false);
-            this.controle.add(new JButton("Cette case n'est pas achetable."));
+            this.acheter.setText("Cette case n'est pas achetable.");
         }
         else if (res.getProprietairePropriete() != null && res.getProprietairePropriete() != j) {
             acheter.setEnabled(false);
-            this.controle.add(new JButton("Case déjà acheté, vous payer : " + res.getLoyerPropriete() + " €."));
+            this.acheter.setText("Case déjà acheté, vous payer : " + res.getLoyerPropriete() + " €.");
         }
         else if (res.getPrixPropriete() == -2) {            
             acheter.setEnabled(false);
-            this.controle.add(new JButton("Vous n'avez pas les fonds suffisants."));
+            this.acheter.setText("Vous n'avez pas les fonds suffisants.");
         }
         else if (res.getProprietairePropriete() == j) {
-            this.controle.add(new JButton("Vous possedez déjà cette case ! "));
+            this.acheter.setText("Vous possedez déjà cette case ! ");
         }
         else {
-            this.controle.add(new JButton("Vous pouvez acheter cette case."));
+            this.acheter.setText("Acheter cette propriéte");
         }
         acheter.addActionListener(new ActionListener() {
             @Override
